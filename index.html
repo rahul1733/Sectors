@@ -3,679 +3,657 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>KOC KOA KOB Map</title>
+
+<title>Rahul Bhatt Team Sectors</title>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
-html,body{margin:0;padding:0;height:100%;width:100%;font-family:Arial;}
-#map{height:100%;width:100%;}
-.leaflet-tooltip.small-label{
-background:white;
-border:1px solid #000;
-border-radius:3px;
-padding:1px 3px;
-font-size:9px;
-font-weight:600;
+
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+    font-family: Arial, sans-serif;
 }
+
+/* Header */
+#header{
+    height:55px;
+    background:linear-gradient(90deg,#1a73e8,#34a853);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:700;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Map */
+#map{
+    height:calc(100vh - 55px);
+    width:100%;
+}
+
+/* Labels - Smaller */
+.leaflet-tooltip.custom-label{
+    background:rgba(255,255,255,0.95);
+    border:1px solid #111;
+    border-radius:5px;
+    padding:3px 6px;
+    font-size:13px;
+    font-weight:600;
+    color:#000;
+}
+
+/* GPS Button */
 #gpsBtn{
-position:absolute;
-right:15px;
-bottom:20px;
-background:#1a73e8;
-color:white;
-border:none;
-border-radius:50%;
-width:48px;
-height:48px;
-font-size:20px;
-z-index:999;
+    position:absolute;
+    right:15px;
+    bottom:20px;
+    background:#1a73e8;
+    color:white;
+    border:none;
+    border-radius:50%;
+    width:48px;
+    height:48px;
+    font-size:20px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+    z-index:999;
 }
+
 </style>
 </head>
+
 <body>
 
+<div id="header">Rahul Bhatt Team Sectors</div>
 <div id="map"></div>
-<button id="gpsBtn">📍</button>
+<button id="gpsBtn">馃搷</button>
 
 <script>
 
 var map = L.map('map');
 
+/* Google Maps Style */
 L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-maxZoom:20
+    maxZoom: 20
 }).addTo(map);
 
 var colors = ['#ff5252', '#448aff', '#69f0ae', '#b388ff', '#ffd740', '#ff8a65', '#4dd0e1', '#7986cb', '#aed581', '#f06292', '#4db6ac', '#ff7043', '#9575cd', '#fff176', '#90a4ae'];
 var colorIndex = 0;
 
 var allLayers = [];
-var polyData = [];
+var userMarker = null;
+var watchId = null;
 
-var userMarker=null;
-var watchId=null;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC01 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC01 = L.polygon([[25.235283,75.887317],[25.233257,75.885345],[25.231426,75.88363],[25.228336,75.880566],[25.221182,75.894223],[25.231765,75.903703],[25.230924,75.907355],[25.234229,75.899053],[25.237069,75.889892],[25.235283,75.887317]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC01,
+    fillColor: c_URJ537KOC01,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC01.bindTooltip("URJ537KOC01",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC01.bindTooltip("URJ537KOC01", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC01.bindPopup("<b>URJ537KOC01</b>");
 
 allLayers.push(poly_URJ537KOC01);
-polyData.push({name:"URJ537KOC01",poly:poly_URJ537KOC01});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC02 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC02 = L.polygon([[25.22145,75.87414],[25.215899,75.884118],[25.214364,75.888248],[25.221182,75.894223],[25.228237,75.880705],[25.228336,75.880566],[25.226427,75.878705],[25.22145,75.87414]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC02,
+    fillColor: c_URJ537KOC02,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC02.bindTooltip("URJ537KOC02",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC02.bindTooltip("URJ537KOC02", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC02.bindPopup("<b>URJ537KOC02</b>");
 
 allLayers.push(poly_URJ537KOC02);
-polyData.push({name:"URJ537KOC02",poly:poly_URJ537KOC02});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC03 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC03 = L.polygon([[25.216668,75.86904],[25.212678,75.881439],[25.215899,75.884118],[25.22145,75.87414],[25.219719,75.871198],[25.216668,75.86904]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC03,
+    fillColor: c_URJ537KOC03,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC03.bindTooltip("URJ537KOC03",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC03.bindTooltip("URJ537KOC03", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC03.bindPopup("<b>URJ537KOC03</b>");
 
 allLayers.push(poly_URJ537KOC03);
-polyData.push({name:"URJ537KOC03",poly:poly_URJ537KOC03});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC04 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC04 = L.polygon([[25.226641,75.899583],[25.214364,75.888248],[25.208795,75.90324],[25.208527,75.90372],[25.216645,75.908234],[25.221093,75.91144],[25.22492,75.904774],[25.226641,75.899583]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC04,
+    fillColor: c_URJ537KOC04,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC04.bindTooltip("URJ537KOC04",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC04.bindTooltip("URJ537KOC04", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC04.bindPopup("<b>URJ537KOC04</b>");
 
 allLayers.push(poly_URJ537KOC04);
-polyData.push({name:"URJ537KOC04",poly:poly_URJ537KOC04});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC05 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC05 = L.polygon([[25.205252,75.901999],[25.203078,75.915045],[25.202056,75.91707],[25.199894,75.917733],[25.195795,75.917428],[25.192205,75.918934],[25.182885,75.925457],[25.177603,75.928547],[25.168256,75.925396],[25.161601,75.928204],[25.176377,75.954164],[25.207755,75.954507],[25.221404,75.930323],[25.225286,75.919337],[25.226835,75.915452],[25.232712,75.903186],[25.231765,75.903703],[25.226641,75.899583],[25.221093,75.91144],[25.216645,75.908234],[25.205252,75.901999]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC05,
+    fillColor: c_URJ537KOC05,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC05.bindTooltip("URJ537KOC05",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC05.bindTooltip("URJ537KOC05", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC05.bindPopup("<b>URJ537KOC05</b>");
 
 allLayers.push(poly_URJ537KOC05);
-polyData.push({name:"URJ537KOC05",poly:poly_URJ537KOC05});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC06 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC06 = L.polygon([[25.193599,75.91815],[25.19222,75.918803],[25.193914,75.903544],[25.196555,75.883202],[25.193497,75.882785],[25.186732,75.880785],[25.181592,75.879134],[25.180456,75.883331],[25.180874,75.890274],[25.182207,75.897335],[25.183385,75.904396],[25.183003,75.908766],[25.181231,75.920171],[25.180509,75.921612],[25.179473,75.923127],[25.178802,75.928142],[25.187986,75.921877],[25.189239,75.921044],[25.193599,75.91815]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC06,
+    fillColor: c_URJ537KOC06,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC06.bindTooltip("URJ537KOC06",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC06.bindTooltip("URJ537KOC06", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC06.bindPopup("<b>URJ537KOC06</b>");
 
 allLayers.push(poly_URJ537KOC06);
-polyData.push({name:"URJ537KOC06",poly:poly_URJ537KOC06});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC07 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC07 = L.polygon([[25.211776,75.884833],[25.196865,75.883202],[25.196555,75.883202],[25.193914,75.903544],[25.192205,75.918934],[25.195795,75.917428],[25.199894,75.917733],[25.202056,75.91707],[25.203078,75.915045],[25.203932,75.908694],[25.205252,75.901999],[25.208527,75.90372],[25.214364,75.888248],[25.21128,75.886932],[25.211776,75.884833]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC07,
+    fillColor: c_URJ537KOC07,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC07.bindTooltip("URJ537KOC07",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC07.bindTooltip("URJ537KOC07", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC07.bindPopup("<b>URJ537KOC07</b>");
 
 allLayers.push(poly_URJ537KOC07);
-polyData.push({name:"URJ537KOC07",poly:poly_URJ537KOC07});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC08 = colors[colorIndex % colors.length];
 
-var poly_URJ537KOC08 = L.polygon([[25.190691,75.858483],[25.1869647,75.8564551],[25.1835622,75.853806],[25.182861,75.855146],[25.184627,75.856121],[25.178882,75.86767],[25.177183,75.870974],[25.183641,75.876103],[25.186028,75.86763],[25.190691,75.858483]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+var poly_URJ537KOC08 = L.polygon([[25.190691,75.858483],[25.188366,75.857903],[25.188417,75.857777],[25.184627,75.856121],[25.178882,75.86767],[25.177183,75.870974],[25.183641,75.876103],[25.186028,75.86763],[25.190691,75.858483]],{
+    color: c_URJ537KOC08,
+    fillColor: c_URJ537KOC08,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC08.bindTooltip("URJ537KOC08",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC08.bindTooltip("URJ537KOC08", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC08.bindPopup("<b>URJ537KOC08</b>");
 
 allLayers.push(poly_URJ537KOC08);
-polyData.push({name:"URJ537KOC08",poly:poly_URJ537KOC08});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC09 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC09 = L.polygon([[25.184627,75.856121],[25.182861,75.855146],[25.183479,75.853965],[25.179219,75.851819],[25.178826,75.853419],[25.179662,75.855072],[25.179506,75.856531],[25.179176,75.857647],[25.174298,75.862307],[25.169652,75.867052],[25.162093,75.873344],[25.168441,75.877743],[25.173539,75.87833],[25.184627,75.856121]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC09,
+    fillColor: c_URJ537KOC09,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC09.bindTooltip("URJ537KOC09",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC09.bindTooltip("URJ537KOC09", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC09.bindPopup("<b>URJ537KOC09</b>");
 
 allLayers.push(poly_URJ537KOC09);
-polyData.push({name:"URJ537KOC09",poly:poly_URJ537KOC09});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC10 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC10 = L.polygon([[25.180981,75.887311],[25.180767,75.883331],[25.181903,75.879134],[25.183641,75.876103],[25.177183,75.870974],[25.173539,75.87833],[25.170616,75.878],[25.170302,75.880238],[25.169907,75.882802],[25.169584,75.886643],[25.174514,75.887241],[25.175085,75.887072],[25.175786,75.88691],[25.176603,75.887005],[25.178237,75.887411],[25.180981,75.887311]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC10,
+    fillColor: c_URJ537KOC10,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC10.bindTooltip("URJ537KOC10",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC10.bindTooltip("URJ537KOC10", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC10.bindPopup("<b>URJ537KOC10</b>");
 
 allLayers.push(poly_URJ537KOC10);
-polyData.push({name:"URJ537KOC10",poly:poly_URJ537KOC10});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC11 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC11 = L.polygon([[25.175338,75.886982],[25.174514,75.887241],[25.173603,75.887037],[25.17242,75.886939],[25.171082,75.886755],[25.169584,75.886643],[25.169102,75.890571],[25.168367,75.901225],[25.183696,75.904396],[25.182059,75.895016],[25.181185,75.890274],[25.181122,75.889232],[25.180981,75.887311],[25.178519,75.887434],[25.176077,75.887031],[25.177048,75.887288],[25.175338,75.886982]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC11,
+    fillColor: c_URJ537KOC11,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC11.bindTooltip("URJ537KOC11",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC11.bindTooltip("URJ537KOC11", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC11.bindPopup("<b>URJ537KOC11</b>");
 
 allLayers.push(poly_URJ537KOC11);
-polyData.push({name:"URJ537KOC11",poly:poly_URJ537KOC11});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC12 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC12 = L.polygon([[25.216668,75.86904],[25.211497,75.864201],[25.207819,75.862666],[25.199315,75.859834],[25.190691,75.858483],[25.186028,75.86763],[25.183641,75.876103],[25.181903,75.879134],[25.181314,75.879347],[25.183922,75.879735],[25.185484,75.880171],[25.187043,75.880785],[25.188294,75.881154],[25.191483,75.882024],[25.193808,75.882785],[25.195796,75.882974],[25.200108,75.883581],[25.211776,75.884833],[25.21128,75.886932],[25.214364,75.888248],[25.215899,75.884118],[25.212678,75.881439],[25.216668,75.86904]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC12,
+    fillColor: c_URJ537KOC12,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC12.bindTooltip("URJ537KOC12",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC12.bindTooltip("URJ537KOC12", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC12.bindPopup("<b>URJ537KOC12</b>");
 
 allLayers.push(poly_URJ537KOC12);
-polyData.push({name:"URJ537KOC12",poly:poly_URJ537KOC12});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC13 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC13 = L.polygon([[25.163878,75.857729],[25.16018,75.858163],[25.156882,75.857503],[25.157132,75.862379],[25.157483,75.864767],[25.160047,75.8646],[25.163878,75.857729]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC13,
+    fillColor: c_URJ537KOC13,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC13.bindTooltip("URJ537KOC13",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC13.bindTooltip("URJ537KOC13", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC13.bindPopup("<b>URJ537KOC13</b>");
 
 allLayers.push(poly_URJ537KOC13);
-polyData.push({name:"URJ537KOC13",poly:poly_URJ537KOC13});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC14 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC14 = L.polygon([[25.178826,75.853419],[25.16753,75.851482],[25.16521,75.855504],[25.173639,75.859453],[25.176058,75.860545],[25.179176,75.857647],[25.179662,75.855072],[25.178826,75.853419]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC14,
+    fillColor: c_URJ537KOC14,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC14.bindTooltip("URJ537KOC14",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC14.bindTooltip("URJ537KOC14", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC14.bindPopup("<b>URJ537KOC14</b>");
 
 allLayers.push(poly_URJ537KOC14);
-polyData.push({name:"URJ537KOC14",poly:poly_URJ537KOC14});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC15 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC15 = L.polygon([[25.176058,75.860545],[25.16521,75.855504],[25.162553,75.860199],[25.171908,75.864821],[25.176058,75.860545]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC15,
+    fillColor: c_URJ537KOC15,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC15.bindTooltip("URJ537KOC15",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC15.bindTooltip("URJ537KOC15", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC15.bindPopup("<b>URJ537KOC15</b>");
 
 allLayers.push(poly_URJ537KOC15);
-polyData.push({name:"URJ537KOC15",poly:poly_URJ537KOC15});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC16 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC16 = L.polygon([[25.171908,75.864821],[25.162553,75.860199],[25.157138,75.869654],[25.162093,75.873344],[25.171908,75.864821]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC16,
+    fillColor: c_URJ537KOC16,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC16.bindTooltip("URJ537KOC16",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC16.bindTooltip("URJ537KOC16", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC16.bindPopup("<b>URJ537KOC16</b>");
 
 allLayers.push(poly_URJ537KOC16);
-polyData.push({name:"URJ537KOC16",poly:poly_URJ537KOC16});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC17 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC17 = L.polygon([[25.183696,75.904396],[25.168367,75.901225],[25.163628,75.901654],[25.154329,75.903509],[25.156713,75.90831],[25.160836,75.927284],[25.168567,75.925224],[25.179113,75.928142],[25.179784,75.923127],[25.181542,75.920171],[25.183314,75.908766],[25.183696,75.904396]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC17,
+    fillColor: c_URJ537KOC17,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC17.bindTooltip("URJ537KOC17",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC17.bindTooltip("URJ537KOC17", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC17.bindPopup("<b>URJ537KOC17</b>");
 
 allLayers.push(poly_URJ537KOC17);
-polyData.push({name:"URJ537KOC17",poly:poly_URJ537KOC17});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC18 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC18 = L.polygon([[25.160335,75.8646],[25.149614,75.865077],[25.15217,75.882332],[25.155045,75.879843],[25.162093,75.873344],[25.157138,75.869654],[25.160335,75.8646]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC18,
+    fillColor: c_URJ537KOC18,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC18.bindTooltip("URJ537KOC18",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC18.bindTooltip("URJ537KOC18", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC18.bindPopup("<b>URJ537KOC18</b>");
 
 allLayers.push(poly_URJ537KOC18);
-polyData.push({name:"URJ537KOC18",poly:poly_URJ537KOC18});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC19 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC19 = L.polygon([[25.149614,75.865077],[25.144075,75.865442],[25.143291,75.890746],[25.15217,75.882332],[25.149614,75.865077]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC19,
+    fillColor: c_URJ537KOC19,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC19.bindTooltip("URJ537KOC19",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC19.bindTooltip("URJ537KOC19", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC19.bindPopup("<b>URJ537KOC19</b>");
 
 allLayers.push(poly_URJ537KOC19);
-polyData.push({name:"URJ537KOC19",poly:poly_URJ537KOC19});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC20 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC20 = L.polygon([[25.144075,75.865442],[25.141395,75.865904],[25.134744,75.880189],[25.143291,75.890746],[25.144075,75.865442]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC20,
+    fillColor: c_URJ537KOC20,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC20.bindTooltip("URJ537KOC20",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC20.bindTooltip("URJ537KOC20", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC20.bindPopup("<b>URJ537KOC20</b>");
 
 allLayers.push(poly_URJ537KOC20);
-polyData.push({name:"URJ537KOC20",poly:poly_URJ537KOC20});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC21 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC21 = L.polygon([[25.167831,75.851475],[25.166358,75.851343],[25.1644,75.851361],[25.160056,75.851885],[25.16018,75.858163],[25.163878,75.857729],[25.16753,75.851482],[25.167977,75.851683],[25.167831,75.851475]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC21,
+    fillColor: c_URJ537KOC21,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC21.bindTooltip("URJ537KOC21",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC21.bindTooltip("URJ537KOC21", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC21.bindPopup("<b>URJ537KOC21</b>");
 
 allLayers.push(poly_URJ537KOC21);
-polyData.push({name:"URJ537KOC21",poly:poly_URJ537KOC21});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC22 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC22 = L.polygon([[25.160056,75.851885],[25.156067,75.852332],[25.156366,75.854577],[25.156882,75.857503],[25.16018,75.858163],[25.160056,75.851885]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC22,
+    fillColor: c_URJ537KOC22,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC22.bindTooltip("URJ537KOC22",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC22.bindTooltip("URJ537KOC22", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC22.bindPopup("<b>URJ537KOC22</b>");
 
 allLayers.push(poly_URJ537KOC22);
-polyData.push({name:"URJ537KOC22",poly:poly_URJ537KOC22});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC23 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC23 = L.polygon([[25.156882,75.857503],[25.156541,75.855694],[25.156357,75.854469],[25.156212,75.853277],[25.156067,75.852332],[25.150518,75.853017],[25.151042,75.858431],[25.152285,75.858431],[25.153343,75.858141],[25.154976,75.857972],[25.156882,75.857503]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC23,
+    fillColor: c_URJ537KOC23,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC23.bindTooltip("URJ537KOC23",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC23.bindTooltip("URJ537KOC23", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC23.bindPopup("<b>URJ537KOC23</b>");
 
 allLayers.push(poly_URJ537KOC23);
-polyData.push({name:"URJ537KOC23",poly:poly_URJ537KOC23});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC24 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC24 = L.polygon([[25.156882,75.857503],[25.154976,75.857972],[25.153343,75.858141],[25.152285,75.858431],[25.151042,75.858431],[25.151361,75.864982],[25.152799,75.864991],[25.157483,75.864767],[25.157132,75.862379],[25.156882,75.857503]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC24,
+    fillColor: c_URJ537KOC24,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC24.bindTooltip("URJ537KOC24",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC24.bindTooltip("URJ537KOC24", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC24.bindPopup("<b>URJ537KOC24</b>");
 
 allLayers.push(poly_URJ537KOC24);
-polyData.push({name:"URJ537KOC24",poly:poly_URJ537KOC24});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC25 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC25 = L.polygon([[25.140439,75.854228],[25.131404,75.855469],[25.131371,75.866129],[25.129312,75.873982],[25.134744,75.880189],[25.141395,75.865904],[25.140439,75.854228]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC25,
+    fillColor: c_URJ537KOC25,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC25.bindTooltip("URJ537KOC25",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC25.bindTooltip("URJ537KOC25", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC25.bindPopup("<b>URJ537KOC25</b>");
 
 allLayers.push(poly_URJ537KOC25);
-polyData.push({name:"URJ537KOC25",poly:poly_URJ537KOC25});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC26 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC26 = L.polygon([[25.126924,75.856039],[25.124466,75.856393],[25.122205,75.858014],[25.12164,75.858538],[25.121075,75.858911],[25.120492,75.859391],[25.118853,75.859948],[25.116981,75.860076],[25.096207,75.86253],[25.101591,75.871238],[25.108815,75.88613],[25.119633,75.880321],[25.129312,75.873982],[25.131371,75.866129],[25.131404,75.855469],[25.126924,75.856039]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC26,
+    fillColor: c_URJ537KOC26,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC26.bindTooltip("URJ537KOC26",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC26.bindTooltip("URJ537KOC26", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC26.bindPopup("<b>URJ537KOC26</b>");
 
 allLayers.push(poly_URJ537KOC26);
-polyData.push({name:"URJ537KOC26",poly:poly_URJ537KOC26});
 
 colorIndex++;
 
-var c = colors[colorIndex % colors.length];
+var c_URJ537KOC27 = colors[colorIndex % colors.length];
 
 var poly_URJ537KOC27 = L.polygon([[25.144845,75.889544],[25.143291,75.890746],[25.134281,75.879617],[25.129312,75.873982],[25.119633,75.880321],[25.115222,75.882792],[25.11176,75.88465],[25.109262,75.886001],[25.112365,75.891624],[25.115643,75.897611],[25.122354,75.909694],[25.130184,75.919329],[25.136692,75.927397],[25.146656,75.93289],[25.152103,75.935949],[25.154698,75.93346],[25.160836,75.927284],[25.156713,75.90831],[25.154329,75.903509],[25.163628,75.901654],[25.168367,75.901225],[25.170616,75.878],[25.168441,75.877743],[25.162093,75.873344],[25.144845,75.889544]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
+    color: c_URJ537KOC27,
+    fillColor: c_URJ537KOC27,
+    fillOpacity: 0.45,
+    weight: 2
 }).addTo(map);
 
-poly_URJ537KOC27.bindTooltip("URJ537KOC27",{
-permanent:true,
-direction:"center",
-className:"small-label"
+poly_URJ537KOC27.bindTooltip("URJ537KOC27", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
 });
 
 poly_URJ537KOC27.bindPopup("<b>URJ537KOC27</b>");
 
 allLayers.push(poly_URJ537KOC27);
-polyData.push({name:"URJ537KOC27",poly:poly_URJ537KOC27});
 
-colorIndex++;
-
-var c = colors[colorIndex % colors.length];
-
-var poly_URJ537KOA20 = L.polygon([[25.15091,75.857162],[25.144698,75.85825],[25.140868,75.85935],[25.141395,75.865904],[25.14567,75.865254],[25.148486,75.865048],[25.151361,75.864982],[25.151122,75.860139],[25.151042,75.858431],[25.150976,75.857743],[25.15091,75.857162]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:2
-}).addTo(map);
-
-poly_URJ537KOA20.bindTooltip("URJ537KOA20",{
-permanent:true,
-direction:"center",
-className:"small-label"
-});
-
-poly_URJ537KOA20.bindPopup("<b>URJ537KOA20</b>");
-
-allLayers.push(poly_URJ537KOA20);
-polyData.push({name:"URJ537KOA20",poly:poly_URJ537KOA20});
-
-colorIndex++;
-
-var c = colors[colorIndex % colors.length];
-
-var poly_URJ537KOA23 = L.polygon([[25.150518,75.853017],[25.140438,75.854269],[25.140668,75.856781],[25.150634,75.854633],[25.150518,75.853017]],{
-color:c,
-fillColor:c,
-fillOpacity:0.6,
-weight:
+col
