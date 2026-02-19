@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KOB Debug Map</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+html,body{margin:0;padding:0;height:100%;width:100%;font-family:Arial;}
+
+#header{
+height:55px;
+background:linear-gradient(90deg,#1a73e8,#34a853);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:17px;
+font-weight:700;
+}
+
+#map{height:calc(100vh - 55px);width:100%;}
+
+/* Small labels */
+.leaflet-tooltip.small-label{
+background:white;
+border:1px solid #000;
+border-radius:4px;
+padding:2px 4px;
+font-size:10px;
+font-weight:600;
+}
+
+/* Big label */
+.leaflet-tooltip.big-label{
+background:yellow;
+border:2px solid #000;
+border-radius:6px;
+padding:4px 8px;
+font-size:16px;
+font-weight:800;
+}
+
+#gpsBtn{
+position:absolute;
+right:15px;
+bottom:20px;
+background:#1a73e8;
+color:white;
+border:none;
+border-radius:50%;
+width:48px;
+height:48px;
+font-size:20px;
+box-shadow:0 2px 6px rgba(0,0,0,0.3);
+z-index:999;
+}
+</style>
+</head>
+<body>
+
+<div id="header">Created by Rahul Bhatt</div>
+<div id="map"></div>
+<button id="gpsBtn">📍</button>
+
+<script>
+
+var map = L.map('map');
+
+L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+maxZoom:20
+}).addTo(map);
+
+var colors = ['#ff5252', '#448aff', '#69f0ae', '#b388ff', '#ffd740', '#ff8a65', '#4dd0e1', '#7986cb', '#aed581', '#f06292', '#4db6ac', '#ff7043', '#9575cd', '#fff176', '#90a4ae'];
+var colorIndex = 0;
+
+var allLayers = [];
+var polyData = [];
+
+var userMarker=null;
+var watchId=null;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB01 = L.polygon([[25.17571,75.845439],[25.174923,75.846921],[25.173612,75.84941],[25.172306,75.852264],[25.174976,75.852718],[25.177511,75.853161],[25.177516,75.852098],[25.176812,75.848262],[25.176144,75.845681],[25.175865,75.845477],[25.17571,75.845439]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB01 = poly_URJ537KOB01.bindTooltip("URJ537KOB01",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB01);
+polyData.push({name:"URJ537KOB01", poly:poly_URJ537KOB01});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB02 = L.polygon([[25.192579,75.850307],[25.191948,75.850704],[25.189778,75.853868],[25.189181,75.854684],[25.189239,75.855736],[25.188579,75.857431],[25.190691,75.858483],[25.197432,75.859514],[25.199438,75.854866],[25.192579,75.850307]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB02 = poly_URJ537KOB02.bindTooltip("URJ537KOB02",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB02);
+polyData.push({name:"URJ537KOB02", poly:poly_URJ537KOB02});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB03 = L.polygon([[25.183598,75.841406],[25.183695,75.838208],[25.18378,75.835093],[25.181973,75.839057],[25.182307,75.839528],[25.182721,75.839822],[25.183198,75.840565],[25.183598,75.841406]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB03 = poly_URJ537KOB03.bindTooltip("URJ537KOB03",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB03);
+polyData.push({name:"URJ537KOB03", poly:poly_URJ537KOB03});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB04 = L.polygon([[25.196637,75.844363],[25.195456,75.8366],[25.188615,75.836509],[25.186576,75.834664],[25.18444,75.83338],[25.18378,75.835093],[25.183585,75.841574],[25.181299,75.843042],[25.193274,75.849234],[25.194587,75.846648],[25.196637,75.844363]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB04 = poly_URJ537KOB04.bindTooltip("URJ537KOB04",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB04);
+polyData.push({name:"URJ537KOB04", poly:poly_URJ537KOB04});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB05 = L.polygon([[25.239003,75.87886],[25.228133,75.860235],[25.223778,75.865692],[25.219719,75.871198],[25.22145,75.87414],[25.228336,75.880566],[25.235283,75.887317],[25.239003,75.87886]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB05 = poly_URJ537KOB05.bindTooltip("URJ537KOB05",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB05);
+polyData.push({name:"URJ537KOB05", poly:poly_URJ537KOB05});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB06 = L.polygon([[25.209152,75.827822],[25.214343,75.821082],[25.213936,75.815908],[25.212946,75.808329],[25.21105,75.795224],[25.215258,75.775005],[25.237756,75.755068],[25.223245,75.749027],[25.203455,75.742988],[25.188452,75.737907],[25.184623,75.742047],[25.166101,75.745398],[25.161564,75.776023],[25.174504,75.796263],[25.179134,75.805287],[25.182357,75.811167],[25.189561,75.812776],[25.194212,75.813924],[25.198377,75.813726],[25.2001,75.815456],[25.201824,75.817486],[25.204842,75.820898],[25.209152,75.827822]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB06 = poly_URJ537KOB06.bindTooltip("URJ537KOB06",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB06);
+polyData.push({name:"URJ537KOB06", poly:poly_URJ537KOB06});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB07 = L.polygon([[25.228439,75.828368],[25.226964,75.78365],[25.237756,75.755068],[25.215258,75.775005],[25.21105,75.795224],[25.212635,75.805804],[25.213936,75.815908],[25.214343,75.821082],[25.206092,75.832004],[25.215314,75.835674],[25.221487,75.831982],[25.226534,75.829857],[25.228439,75.828368]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB07 = poly_URJ537KOB07.bindTooltip("URJ537KOB07",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB07);
+polyData.push({name:"URJ537KOB07", poly:poly_URJ537KOB07});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB08 = L.polygon([[25.182307,75.839528],[25.182067,75.839218],[25.181973,75.839057],[25.181311,75.83913],[25.181072,75.839176],[25.180917,75.839254],[25.180839,75.839396],[25.180817,75.839444],[25.180793,75.839482],[25.178128,75.83992],[25.178627,75.843897],[25.17979,75.843992],[25.18103,75.844002],[25.181299,75.843042],[25.181275,75.843014],[25.181674,75.84273],[25.182075,75.842525],[25.182266,75.842401],[25.183604,75.84151],[25.183198,75.840565],[25.182723,75.839896],[25.182307,75.839528]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB08 = poly_URJ537KOB08.bindTooltip("URJ537KOB08",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB08);
+polyData.push({name:"URJ537KOB08", poly:poly_URJ537KOB08});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB09 = L.polygon([[25.172313,75.834423],[25.172116,75.834415],[25.171728,75.836904],[25.172313,75.834423]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB09 = poly_URJ537KOB09.bindTooltip("URJ537KOB09",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB09);
+polyData.push({name:"URJ537KOB09", poly:poly_URJ537KOB09});
+
+
+L.circleMarker([25.172313,75.834423],{
+radius:4,
+color:"black",
+fillColor:"black",
+fillOpacity:1
+}).addTo(map);
+
+L.circleMarker([25.172116,75.834415],{
+radius:4,
+color:"black",
+fillColor:"black",
+fillOpacity:1
+}).addTo(map);
+
+L.circleMarker([25.171728,75.836904],{
+radius:4,
+color:"black",
+fillColor:"black",
+fillOpacity:1
+}).addTo(map);
+
+L.circleMarker([25.172313,75.834423],{
+radius:4,
+color:"black",
+fillColor:"black",
+fillOpacity:1
+}).addTo(map);
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB10 = L.polygon([[25.172935,75.843274],[25.174315,75.843708],[25.174965,75.843858],[25.175388,75.843954],[25.178627,75.843897],[25.178498,75.843158],[25.178372,75.84183],[25.178128,75.83992],[25.176864,75.840081],[25.174552,75.840339],[25.174484,75.840339],[25.172044,75.840559],[25.171962,75.84214],[25.172439,75.842707],[25.172935,75.843274]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB10 = poly_URJ537KOB10.bindTooltip("URJ537KOB10",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB10);
+polyData.push({name:"URJ537KOB10", poly:poly_URJ537KOB10});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB11 = L.polygon([[25.176176,75.843863],[25.176214,75.843806],[25.176137,75.84386],[25.176176,75.843863]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB11 = poly_URJ537KOB11.bindTooltip("URJ537KOB11",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB11);
+polyData.push({name:"URJ537KOB11", poly:poly_URJ537KOB11});
+
+
+L.circleMarker([25.176176,75.843863],{
+radius:4,
+color:"black",
+fillColor:"black",
+fillOpacity:1
+}).addTo(map);
+
+L.circleMarker([25.176214,75.843806],{
+radius:4,
+color:"black",
+fillColor:"black",
+fillOpacity:1
+}).addTo(map);
+
+L.circleMarker([25.176137,75.84386],{
+radius:4,
+color:"black",
+fillColor:"black",
+fillOpacity:1
+}).addTo(map);
+
+L.circleMarker([25.176176,75.843863],{
+radius:4,
+color:"black",
+fillColor:"black",
+fillOpacity:1
+}).addTo(map);
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB12 = L.polygon([[25.228133,75.860235],[25.225594,75.860707],[25.213701,75.854493],[25.211488,75.862861],[25.211497,75.864201],[25.216162,75.868461],[25.219719,75.871198],[25.223778,75.865692],[25.225458,75.86354],[25.228133,75.860235]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB12 = poly_URJ537KOB12.bindTooltip("URJ537KOB12",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB12);
+polyData.push({name:"URJ537KOB12", poly:poly_URJ537KOB12});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB13 = L.polygon([[25.198902,75.831493],[25.193845,75.827674],[25.191204,75.824241],[25.188165,75.829351],[25.195456,75.8366],[25.198902,75.831493]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB13 = poly_URJ537KOB13.bindTooltip("URJ537KOB13",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB13);
+polyData.push({name:"URJ537KOB13", poly:poly_URJ537KOB13});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB14 = L.polygon([[25.2214524,75.8307846],[25.2516124,75.8465136],[25.2619424,75.8326636],[25.2611664,75.8160127],[25.2590704,75.7610787],[25.2375664,75.7536987],[25.2267744,75.7822807],[25.2282494,75.8269986],[25.2214524,75.8307846]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB14 = poly_URJ537KOB14.bindTooltip("URJ537KOB14",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB14);
+polyData.push({name:"URJ537KOB14", poly:poly_URJ537KOB14});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB15 = L.polygon([[25.209152,75.827822],[25.205154,75.821429],[25.198377,75.813726],[25.193541,75.813914],[25.193845,75.827674],[25.198902,75.831493],[25.19833,75.832315],[25.202349,75.836799],[25.209152,75.827822]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB15 = poly_URJ537KOB15.bindTooltip("URJ537KOB15",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB15);
+polyData.push({name:"URJ537KOB15", poly:poly_URJ537KOB15});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB16 = L.polygon([[25.213701,75.854493],[25.20213,75.848227],[25.197432,75.859514],[25.199315,75.859834],[25.20462,75.861428],[25.211497,75.864201],[25.211488,75.862861],[25.213701,75.854493]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB16 = poly_URJ537KOB16.bindTooltip("URJ537KOB16",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB16);
+polyData.push({name:"URJ537KOB16", poly:poly_URJ537KOB16});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB17 = L.polygon([[25.172752,75.846046],[25.172126,75.847457],[25.171716,75.848258],[25.171018,75.84977],[25.170191,75.851839],[25.172248,75.8522],[25.175652,75.845375],[25.175626,75.844533],[25.176214,75.843806],[25.172816,75.843363],[25.172752,75.846046]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB17 = poly_URJ537KOB17.bindTooltip("URJ537KOB17",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB17);
+polyData.push({name:"URJ537KOB17", poly:poly_URJ537KOB17});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB18 = L.polygon([[25.178187,75.834152],[25.1767,75.834602],[25.172505,75.834458],[25.171728,75.836904],[25.172044,75.840559],[25.17574,75.840246],[25.178128,75.83992],[25.178373,75.83725],[25.178197,75.836365],[25.178183,75.835806],[25.178052,75.835277],[25.178187,75.834152]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB18 = poly_URJ537KOB18.bindTooltip("URJ537KOB18",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB18);
+polyData.push({name:"URJ537KOB18", poly:poly_URJ537KOB18});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB19 = L.polygon([[25.173515,75.829323],[25.172702,75.828174],[25.166038,75.822923],[25.165378,75.822746],[25.165135,75.828786],[25.166446,75.834226],[25.16932,75.835822],[25.171728,75.836904],[25.173515,75.829323]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB19 = poly_URJ537KOB19.bindTooltip("URJ537KOB19",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB19);
+polyData.push({name:"URJ537KOB19", poly:poly_URJ537KOB19});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB22 = L.polygon([[25.202349,75.836799],[25.19833,75.832315],[25.195718,75.836342],[25.195456,75.8366],[25.196052,75.840117],[25.196705,75.84432],[25.197522,75.84314],[25.202349,75.836799]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB22 = poly_URJ537KOB22.bindTooltip("URJ537KOB22",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB22);
+polyData.push({name:"URJ537KOB22", poly:poly_URJ537KOB22});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB23 = L.polygon([[25.166101,75.745398],[25.149397,75.756995],[25.146986,75.770978],[25.141954,75.788279],[25.153513,75.806942],[25.156933,75.816991],[25.176758,75.800773],[25.17461,75.796538],[25.169511,75.788526],[25.161564,75.776023],[25.166101,75.745398]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB23 = poly_URJ537KOB23.bindTooltip("URJ537KOB23",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB23);
+polyData.push({name:"URJ537KOB23", poly:poly_URJ537KOB23});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB24 = L.polygon([[25.224302,75.84108],[25.212848,75.849599],[25.200487,75.839247],[25.196637,75.844363],[25.20213,75.848227],[25.213701,75.854493],[25.225594,75.860707],[25.228133,75.860235],[25.227276,75.857606],[25.226906,75.854096],[25.225039,75.848525],[25.224302,75.84108]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB24 = poly_URJ537KOB24.bindTooltip("URJ537KOB24",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB24);
+polyData.push({name:"URJ537KOB24", poly:poly_URJ537KOB24});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB26 = L.polygon([[25.262082,75.834372],[25.246448,75.855842],[25.228133,75.860235],[25.240959,75.882638],[25.251416,75.870433],[25.262191,75.858262],[25.262215,75.845158],[25.262082,75.834372]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB26 = poly_URJ537KOB26.bindTooltip("URJ537KOB26",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB26);
+polyData.push({name:"URJ537KOB26", poly:poly_URJ537KOB26});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB27 = L.polygon([[25.192579,75.850307],[25.199438,75.854866],[25.202285,75.848399],[25.199952,75.846499],[25.196637,75.844363],[25.194506,75.846849],[25.192579,75.850307]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB27 = poly_URJ537KOB27.bindTooltip("URJ537KOB27",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB27);
+polyData.push({name:"URJ537KOB27", poly:poly_URJ537KOB27});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB28 = L.polygon([[25.221487,75.831982],[25.224302,75.84108],[25.225039,75.848525],[25.226906,75.854096],[25.227216,75.857272],[25.228133,75.860235],[25.246448,75.855842],[25.251802,75.847883],[25.221487,75.831982]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB28 = poly_URJ537KOB28.bindTooltip("URJ537KOB28",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB28);
+polyData.push({name:"URJ537KOB28", poly:poly_URJ537KOB28});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB29 = L.polygon([[25.183479,75.853965],[25.185623,75.855484],[25.188579,75.857431],[25.1892,75.855693],[25.189142,75.854641],[25.191948,75.850704],[25.192579,75.850307],[25.193274,75.849234],[25.187347,75.846174],[25.181299,75.843042],[25.180994,75.843216],[25.181013,75.843806],[25.181205,75.852794],[25.183479,75.853965]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB29 = poly_URJ537KOB29.bindTooltip("URJ537KOB29",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB29);
+polyData.push({name:"URJ537KOB29", poly:poly_URJ537KOB29});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB30 = L.polygon([[25.195456,75.8366],[25.188165,75.829351],[25.18444,75.83338],[25.188615,75.836509],[25.195456,75.8366]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB30 = poly_URJ537KOB30.bindTooltip("URJ537KOB30",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB30);
+polyData.push({name:"URJ537KOB30", poly:poly_URJ537KOB30});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB31 = L.polygon([[25.184385,75.83352],[25.184222,75.83351],[25.1834,75.833951],[25.18242,75.834484],[25.181429,75.83498],[25.180543,75.835544],[25.182432,75.838049],[25.183484,75.835803],[25.184385,75.83352]],{
+color:c,
+fillColor:c,
+fillOpacity:0.7,
+weight:2
+}).addTo(map);
+
+var label_URJ537KOB31 = poly_URJ537KOB31.bindTooltip("URJ537KOB31",{
+permanent:true,
+direction:"center",
+className:"small-label"
+});
+
+allLayers.push(poly_URJ537KOB31);
+polyData.push({name:"URJ537KOB31", poly:poly_URJ537KOB31});
+
+colorIndex++;
+
+var c = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB32 = L.polygon([[25.180534,75.835549],[25.179427,75.836247],[25.178436,75.837287],[25.178128,75.83992],[25.180691,75.839621],[25.180927,75.839213],[25.181968,75.839025],[25.182422,75.83805
