@@ -656,4 +656,183 @@ poly_URJ537KOC27.bindPopup("<b>URJ537KOC27</b>");
 
 allLayers.push(poly_URJ537KOC27);
 
-col
+colorIndex++;
+
+var c_URJ537KOA20 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOA20 = L.polygon([[25.15091,75.857162],[25.144698,75.85825],[25.140868,75.85935],[25.141395,75.865904],[25.14567,75.865254],[25.148486,75.865048],[25.151361,75.864982],[25.151122,75.860139],[25.151042,75.858431],[25.150976,75.857743],[25.15091,75.857162]],{
+    color: c_URJ537KOA20,
+    fillColor: c_URJ537KOA20,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOA20.bindTooltip("URJ537KOA20", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOA20.bindPopup("<b>URJ537KOA20</b>");
+
+allLayers.push(poly_URJ537KOA20);
+
+colorIndex++;
+
+var c_URJ537KOA23 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOA23 = L.polygon([[25.150518,75.853017],[25.140438,75.854269],[25.140668,75.856781],[25.150634,75.854633],[25.150518,75.853017]],{
+    color: c_URJ537KOA23,
+    fillColor: c_URJ537KOA23,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOA23.bindTooltip("URJ537KOA23", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOA23.bindPopup("<b>URJ537KOA23</b>");
+
+allLayers.push(poly_URJ537KOA23);
+
+colorIndex++;
+
+var c_URJ537KOA36 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOA36 = L.polygon([[25.150634,75.854633],[25.140668,75.856781],[25.140868,75.85935],[25.144893,75.858164],[25.15091,75.857162],[25.150634,75.854633]],{
+    color: c_URJ537KOA36,
+    fillColor: c_URJ537KOA36,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOA36.bindTooltip("URJ537KOA36", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOA36.bindPopup("<b>URJ537KOA36</b>");
+
+allLayers.push(poly_URJ537KOA36);
+
+colorIndex++;
+
+var c_URJ537KOB20 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB20 = L.polygon([[25.154128,75.844149],[25.147408,75.844003],[25.147243,75.84613],[25.148359,75.852496],[25.154128,75.844149]],{
+    color: c_URJ537KOB20,
+    fillColor: c_URJ537KOB20,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOB20.bindTooltip("URJ537KOB20", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOB20.bindPopup("<b>URJ537KOB20</b>");
+
+allLayers.push(poly_URJ537KOB20);
+
+colorIndex++;
+
+var c_URJ537KOB21 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB21 = L.polygon([[25.164587,75.85001],[25.154128,75.844149],[25.148359,75.852496],[25.148599,75.853238],[25.1644,75.851361],[25.164587,75.85001]],{
+    color: c_URJ537KOB21,
+    fillColor: c_URJ537KOB21,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOB21.bindTooltip("URJ537KOB21", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOB21.bindPopup("<b>URJ537KOB21</b>");
+
+allLayers.push(poly_URJ537KOB21);
+
+colorIndex++;
+
+var c_URJ537KOB25 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB25 = L.polygon([[25.171085,75.84976],[25.172153,75.847576],[25.17248,75.846851],[25.17281,75.84611],[25.170897,75.846701],[25.169882,75.844418],[25.169521,75.843525],[25.169316,75.843568],[25.167033,75.843683],[25.165337,75.84389],[25.165197,75.845192],[25.164764,75.847758],[25.164587,75.85001],[25.1644,75.851361],[25.166189,75.851308],[25.167083,75.851409],[25.16753,75.851482],[25.167831,75.851475],[25.167977,75.851683],[25.17022,75.85194],[25.170556,75.851127],[25.171085,75.84976]],{
+    color: c_URJ537KOB25,
+    fillColor: c_URJ537KOB25,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOB25.bindTooltip("URJ537KOB25", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOB25.bindPopup("<b>URJ537KOB25</b>");
+
+allLayers.push(poly_URJ537KOB25);
+
+colorIndex++;
+
+
+/* Auto Fit All Sectors */
+if(allLayers.length > 0){
+    var group = new L.featureGroup(allLayers);
+    map.fitBounds(group.getBounds().pad(0.12));
+}
+
+/* Live GPS Tracking */
+function startLiveLocation(){
+
+    if(!navigator.geolocation){
+        alert("GPS not supported");
+        return;
+    }
+
+    if(watchId){
+        navigator.geolocation.clearWatch(watchId);
+    }
+
+    watchId = navigator.geolocation.watchPosition(function(pos){
+
+        var lat = pos.coords.latitude;
+        var lon = pos.coords.longitude;
+
+        if(!userMarker){
+            userMarker = L.circleMarker([lat,lon],{
+                radius:7,
+                color:"#1a73e8",
+                fillColor:"#1a73e8",
+                fillOpacity:0.9
+            }).addTo(map).bindPopup("You are here");
+        }else{
+            userMarker.setLatLng([lat,lon]);
+        }
+
+    },function(){
+        alert("Location permission denied");
+    },{
+        enableHighAccuracy:true,
+        maximumAge:5000,
+        timeout:10000
+    });
+}
+
+/* GPS Button */
+document.getElementById("gpsBtn").onclick = function(){
+    startLiveLocation();
+};
+
+</script>
+</body>
+</html>
