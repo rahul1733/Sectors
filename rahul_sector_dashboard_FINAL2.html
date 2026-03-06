@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Rahul Bhatt Team Sectors</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+#header{
+    height:55px;
+    background:linear-gradient(90deg,#1a73e8,#34a853);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:700;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Map */
+#map{
+    height:calc(100vh - 55px);
+    width:100%;
+}
+
+/* Labels - Smaller */
+.leaflet-tooltip.custom-label{
+    background:rgba(255,255,255,0.95);
+    border:1px solid #111;
+    border-radius:5px;
+    padding:3px 6px;
+    font-size:13px;
+    font-weight:600;
+    color:#000;
+}
+
+/* GPS Button */
+#gpsBtn{
+    position:absolute;
+    right:15px;
+    bottom:20px;
+    background:#1a73e8;
+    color:white;
+    border:none;
+    border-radius:50%;
+    width:48px;
+    height:48px;
+    font-size:20px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+    z-index:999;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="header">Rahul Bhatt Team Sectors</div>
+<div id="map"></div>
+<button id="gpsBtn">馃搷</button>
+
+<script>
+
+var map = L.map('map');
+
+/* Google Maps Style */
+L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+    maxZoom: 20
+}).addTo(map);
+
+var colors = ['#ff5252', '#448aff', '#69f0ae', '#b388ff', '#ffd740', '#ff8a65', '#4dd0e1', '#7986cb', '#aed581', '#f06292', '#4db6ac', '#ff7043', '#9575cd', '#fff176', '#90a4ae'];
+var colorIndex = 0;
+
+var allLayers = [];
+var userMarker = null;
+var watchId = null;
+
+
+var c_URJ537KOC01 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC01 = L.polygon([[25.235283,75.887317],[25.233257,75.885345],[25.231426,75.88363],[25.228336,75.880566],[25.221182,75.894223],[25.231765,75.903703],[25.230924,75.907355],[25.234229,75.899053],[25.237069,75.889892],[25.235283,75.887317]],{
+    color: c_URJ537KOC01,
+    fillColor: c_URJ537KOC01,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC01.bindTooltip("URJ537KOC01", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC01.bindPopup("<b>URJ537KOC01</b>");
+
+allLayers.push(poly_URJ537KOC01);
+
+colorIndex++;
+
+var c_URJ537KOC02 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC02 = L.polygon([[25.22145,75.87414],[25.215899,75.884118],[25.214364,75.888248],[25.221182,75.894223],[25.228237,75.880705],[25.228336,75.880566],[25.226427,75.878705],[25.22145,75.87414]],{
+    color: c_URJ537KOC02,
+    fillColor: c_URJ537KOC02,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC02.bindTooltip("URJ537KOC02", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC02.bindPopup("<b>URJ537KOC02</b>");
+
+allLayers.push(poly_URJ537KOC02);
+
+colorIndex++;
+
+var c_URJ537KOC03 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC03 = L.polygon([[25.216668,75.86904],[25.212678,75.881439],[25.215899,75.884118],[25.22145,75.87414],[25.219719,75.871198],[25.216668,75.86904]],{
+    color: c_URJ537KOC03,
+    fillColor: c_URJ537KOC03,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC03.bindTooltip("URJ537KOC03", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC03.bindPopup("<b>URJ537KOC03</b>");
+
+allLayers.push(poly_URJ537KOC03);
+
+colorIndex++;
+
+var c_URJ537KOC04 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC04 = L.polygon([[25.226641,75.899583],[25.214364,75.888248],[25.208795,75.90324],[25.208527,75.90372],[25.216645,75.908234],[25.221093,75.91144],[25.22492,75.904774],[25.226641,75.899583]],{
+    color: c_URJ537KOC04,
+    fillColor: c_URJ537KOC04,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC04.bindTooltip("URJ537KOC04", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC04.bindPopup("<b>URJ537KOC04</b>");
+
+allLayers.push(poly_URJ537KOC04);
+
+colorIndex++;
+
+var c_URJ537KOC05 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC05 = L.polygon([[25.205252,75.901999],[25.203078,75.915045],[25.202056,75.91707],[25.199894,75.917733],[25.195795,75.917428],[25.192205,75.918934],[25.182885,75.925457],[25.177603,75.928547],[25.168256,75.925396],[25.161601,75.928204],[25.176377,75.954164],[25.207755,75.954507],[25.221404,75.930323],[25.225286,75.919337],[25.226835,75.915452],[25.232712,75.903186],[25.231765,75.903703],[25.226641,75.899583],[25.221093,75.91144],[25.216645,75.908234],[25.205252,75.901999]],{
+    color: c_URJ537KOC05,
+    fillColor: c_URJ537KOC05,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC05.bindTooltip("URJ537KOC05", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC05.bindPopup("<b>URJ537KOC05</b>");
+
+allLayers.push(poly_URJ537KOC05);
+
+colorIndex++;
+
+var c_URJ537KOC06 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC06 = L.polygon([[25.193599,75.91815],[25.19222,75.918803],[25.193914,75.903544],[25.196555,75.883202],[25.193497,75.882785],[25.186732,75.880785],[25.181592,75.879134],[25.180456,75.883331],[25.180874,75.890274],[25.182207,75.897335],[25.183385,75.904396],[25.183003,75.908766],[25.181231,75.920171],[25.180509,75.921612],[25.179473,75.923127],[25.178802,75.928142],[25.187986,75.921877],[25.189239,75.921044],[25.193599,75.91815]],{
+    color: c_URJ537KOC06,
+    fillColor: c_URJ537KOC06,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC06.bindTooltip("URJ537KOC06", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC06.bindPopup("<b>URJ537KOC06</b>");
+
+allLayers.push(poly_URJ537KOC06);
+
+colorIndex++;
+
+var c_URJ537KOC07 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC07 = L.polygon([[25.211776,75.884833],[25.196865,75.883202],[25.196555,75.883202],[25.193914,75.903544],[25.192205,75.918934],[25.195795,75.917428],[25.199894,75.917733],[25.202056,75.91707],[25.203078,75.915045],[25.203932,75.908694],[25.205252,75.901999],[25.208527,75.90372],[25.214364,75.888248],[25.21128,75.886932],[25.211776,75.884833]],{
+    color: c_URJ537KOC07,
+    fillColor: c_URJ537KOC07,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC07.bindTooltip("URJ537KOC07", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC07.bindPopup("<b>URJ537KOC07</b>");
+
+allLayers.push(poly_URJ537KOC07);
+
+colorIndex++;
+
+var c_URJ537KOC08 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC08 = L.polygon([[25.190691,75.858483],[25.188366,75.857903],[25.188417,75.857777],[25.184627,75.856121],[25.178882,75.86767],[25.177183,75.870974],[25.183641,75.876103],[25.186028,75.86763],[25.190691,75.858483]],{
+    color: c_URJ537KOC08,
+    fillColor: c_URJ537KOC08,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC08.bindTooltip("URJ537KOC08", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC08.bindPopup("<b>URJ537KOC08</b>");
+
+allLayers.push(poly_URJ537KOC08);
+
+colorIndex++;
+
+var c_URJ537KOC09 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC09 = L.polygon([[25.184627,75.856121],[25.182861,75.855146],[25.183479,75.853965],[25.179219,75.851819],[25.178826,75.853419],[25.179662,75.855072],[25.179506,75.856531],[25.179176,75.857647],[25.174298,75.862307],[25.169652,75.867052],[25.162093,75.873344],[25.168441,75.877743],[25.173539,75.87833],[25.184627,75.856121]],{
+    color: c_URJ537KOC09,
+    fillColor: c_URJ537KOC09,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC09.bindTooltip("URJ537KOC09", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC09.bindPopup("<b>URJ537KOC09</b>");
+
+allLayers.push(poly_URJ537KOC09);
+
+colorIndex++;
+
+var c_URJ537KOC10 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC10 = L.polygon([[25.180981,75.887311],[25.180767,75.883331],[25.181903,75.879134],[25.183641,75.876103],[25.177183,75.870974],[25.173539,75.87833],[25.170616,75.878],[25.170302,75.880238],[25.169907,75.882802],[25.169584,75.886643],[25.174514,75.887241],[25.175085,75.887072],[25.175786,75.88691],[25.176603,75.887005],[25.178237,75.887411],[25.180981,75.887311]],{
+    color: c_URJ537KOC10,
+    fillColor: c_URJ537KOC10,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC10.bindTooltip("URJ537KOC10", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC10.bindPopup("<b>URJ537KOC10</b>");
+
+allLayers.push(poly_URJ537KOC10);
+
+colorIndex++;
+
+var c_URJ537KOC11 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC11 = L.polygon([[25.175338,75.886982],[25.174514,75.887241],[25.173603,75.887037],[25.17242,75.886939],[25.171082,75.886755],[25.169584,75.886643],[25.169102,75.890571],[25.168367,75.901225],[25.183696,75.904396],[25.182059,75.895016],[25.181185,75.890274],[25.181122,75.889232],[25.180981,75.887311],[25.178519,75.887434],[25.176077,75.887031],[25.177048,75.887288],[25.175338,75.886982]],{
+    color: c_URJ537KOC11,
+    fillColor: c_URJ537KOC11,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC11.bindTooltip("URJ537KOC11", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC11.bindPopup("<b>URJ537KOC11</b>");
+
+allLayers.push(poly_URJ537KOC11);
+
+colorIndex++;
+
+var c_URJ537KOC12 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC12 = L.polygon([[25.216668,75.86904],[25.211497,75.864201],[25.207819,75.862666],[25.199315,75.859834],[25.190691,75.858483],[25.186028,75.86763],[25.183641,75.876103],[25.181903,75.879134],[25.181314,75.879347],[25.183922,75.879735],[25.185484,75.880171],[25.187043,75.880785],[25.188294,75.881154],[25.191483,75.882024],[25.193808,75.882785],[25.195796,75.882974],[25.200108,75.883581],[25.211776,75.884833],[25.21128,75.886932],[25.214364,75.888248],[25.215899,75.884118],[25.212678,75.881439],[25.216668,75.86904]],{
+    color: c_URJ537KOC12,
+    fillColor: c_URJ537KOC12,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC12.bindTooltip("URJ537KOC12", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC12.bindPopup("<b>URJ537KOC12</b>");
+
+allLayers.push(poly_URJ537KOC12);
+
+colorIndex++;
+
+var c_URJ537KOC13 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC13 = L.polygon([[25.163878,75.857729],[25.16018,75.858163],[25.156882,75.857503],[25.157132,75.862379],[25.157483,75.864767],[25.160047,75.8646],[25.163878,75.857729]],{
+    color: c_URJ537KOC13,
+    fillColor: c_URJ537KOC13,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC13.bindTooltip("URJ537KOC13", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC13.bindPopup("<b>URJ537KOC13</b>");
+
+allLayers.push(poly_URJ537KOC13);
+
+colorIndex++;
+
+var c_URJ537KOC14 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC14 = L.polygon([[25.178826,75.853419],[25.16753,75.851482],[25.16521,75.855504],[25.173639,75.859453],[25.176058,75.860545],[25.179176,75.857647],[25.179662,75.855072],[25.178826,75.853419]],{
+    color: c_URJ537KOC14,
+    fillColor: c_URJ537KOC14,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC14.bindTooltip("URJ537KOC14", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC14.bindPopup("<b>URJ537KOC14</b>");
+
+allLayers.push(poly_URJ537KOC14);
+
+colorIndex++;
+
+var c_URJ537KOC15 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC15 = L.polygon([[25.176058,75.860545],[25.16521,75.855504],[25.162553,75.860199],[25.171908,75.864821],[25.176058,75.860545]],{
+    color: c_URJ537KOC15,
+    fillColor: c_URJ537KOC15,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC15.bindTooltip("URJ537KOC15", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC15.bindPopup("<b>URJ537KOC15</b>");
+
+allLayers.push(poly_URJ537KOC15);
+
+colorIndex++;
+
+var c_URJ537KOC16 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC16 = L.polygon([[25.171908,75.864821],[25.162553,75.860199],[25.157138,75.869654],[25.162093,75.873344],[25.171908,75.864821]],{
+    color: c_URJ537KOC16,
+    fillColor: c_URJ537KOC16,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC16.bindTooltip("URJ537KOC16", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC16.bindPopup("<b>URJ537KOC16</b>");
+
+allLayers.push(poly_URJ537KOC16);
+
+colorIndex++;
+
+var c_URJ537KOC17 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC17 = L.polygon([[25.183696,75.904396],[25.168367,75.901225],[25.163628,75.901654],[25.154329,75.903509],[25.156713,75.90831],[25.160836,75.927284],[25.168567,75.925224],[25.179113,75.928142],[25.179784,75.923127],[25.181542,75.920171],[25.183314,75.908766],[25.183696,75.904396]],{
+    color: c_URJ537KOC17,
+    fillColor: c_URJ537KOC17,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC17.bindTooltip("URJ537KOC17", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC17.bindPopup("<b>URJ537KOC17</b>");
+
+allLayers.push(poly_URJ537KOC17);
+
+colorIndex++;
+
+var c_URJ537KOC18 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC18 = L.polygon([[25.160335,75.8646],[25.149614,75.865077],[25.15217,75.882332],[25.155045,75.879843],[25.162093,75.873344],[25.157138,75.869654],[25.160335,75.8646]],{
+    color: c_URJ537KOC18,
+    fillColor: c_URJ537KOC18,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC18.bindTooltip("URJ537KOC18", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC18.bindPopup("<b>URJ537KOC18</b>");
+
+allLayers.push(poly_URJ537KOC18);
+
+colorIndex++;
+
+var c_URJ537KOC19 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC19 = L.polygon([[25.149614,75.865077],[25.144075,75.865442],[25.143291,75.890746],[25.15217,75.882332],[25.149614,75.865077]],{
+    color: c_URJ537KOC19,
+    fillColor: c_URJ537KOC19,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC19.bindTooltip("URJ537KOC19", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC19.bindPopup("<b>URJ537KOC19</b>");
+
+allLayers.push(poly_URJ537KOC19);
+
+colorIndex++;
+
+var c_URJ537KOC20 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC20 = L.polygon([[25.144075,75.865442],[25.141395,75.865904],[25.134744,75.880189],[25.143291,75.890746],[25.144075,75.865442]],{
+    color: c_URJ537KOC20,
+    fillColor: c_URJ537KOC20,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC20.bindTooltip("URJ537KOC20", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC20.bindPopup("<b>URJ537KOC20</b>");
+
+allLayers.push(poly_URJ537KOC20);
+
+colorIndex++;
+
+var c_URJ537KOC21 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC21 = L.polygon([[25.167831,75.851475],[25.166358,75.851343],[25.1644,75.851361],[25.160056,75.851885],[25.16018,75.858163],[25.163878,75.857729],[25.16753,75.851482],[25.167977,75.851683],[25.167831,75.851475]],{
+    color: c_URJ537KOC21,
+    fillColor: c_URJ537KOC21,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC21.bindTooltip("URJ537KOC21", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC21.bindPopup("<b>URJ537KOC21</b>");
+
+allLayers.push(poly_URJ537KOC21);
+
+colorIndex++;
+
+var c_URJ537KOC22 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC22 = L.polygon([[25.160056,75.851885],[25.156067,75.852332],[25.156366,75.854577],[25.156882,75.857503],[25.16018,75.858163],[25.160056,75.851885]],{
+    color: c_URJ537KOC22,
+    fillColor: c_URJ537KOC22,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC22.bindTooltip("URJ537KOC22", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC22.bindPopup("<b>URJ537KOC22</b>");
+
+allLayers.push(poly_URJ537KOC22);
+
+colorIndex++;
+
+var c_URJ537KOC23 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC23 = L.polygon([[25.156882,75.857503],[25.156541,75.855694],[25.156357,75.854469],[25.156212,75.853277],[25.156067,75.852332],[25.150518,75.853017],[25.151042,75.858431],[25.152285,75.858431],[25.153343,75.858141],[25.154976,75.857972],[25.156882,75.857503]],{
+    color: c_URJ537KOC23,
+    fillColor: c_URJ537KOC23,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC23.bindTooltip("URJ537KOC23", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC23.bindPopup("<b>URJ537KOC23</b>");
+
+allLayers.push(poly_URJ537KOC23);
+
+colorIndex++;
+
+var c_URJ537KOC24 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC24 = L.polygon([[25.156882,75.857503],[25.154976,75.857972],[25.153343,75.858141],[25.152285,75.858431],[25.151042,75.858431],[25.151361,75.864982],[25.152799,75.864991],[25.157483,75.864767],[25.157132,75.862379],[25.156882,75.857503]],{
+    color: c_URJ537KOC24,
+    fillColor: c_URJ537KOC24,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC24.bindTooltip("URJ537KOC24", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC24.bindPopup("<b>URJ537KOC24</b>");
+
+allLayers.push(poly_URJ537KOC24);
+
+colorIndex++;
+
+var c_URJ537KOC25 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC25 = L.polygon([[25.140439,75.854228],[25.131404,75.855469],[25.131371,75.866129],[25.129312,75.873982],[25.134744,75.880189],[25.141395,75.865904],[25.140439,75.854228]],{
+    color: c_URJ537KOC25,
+    fillColor: c_URJ537KOC25,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC25.bindTooltip("URJ537KOC25", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC25.bindPopup("<b>URJ537KOC25</b>");
+
+allLayers.push(poly_URJ537KOC25);
+
+colorIndex++;
+
+var c_URJ537KOC26 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC26 = L.polygon([[25.126924,75.856039],[25.124466,75.856393],[25.122205,75.858014],[25.12164,75.858538],[25.121075,75.858911],[25.120492,75.859391],[25.118853,75.859948],[25.116981,75.860076],[25.096207,75.86253],[25.101591,75.871238],[25.108815,75.88613],[25.119633,75.880321],[25.129312,75.873982],[25.131371,75.866129],[25.131404,75.855469],[25.126924,75.856039]],{
+    color: c_URJ537KOC26,
+    fillColor: c_URJ537KOC26,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC26.bindTooltip("URJ537KOC26", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC26.bindPopup("<b>URJ537KOC26</b>");
+
+allLayers.push(poly_URJ537KOC26);
+
+colorIndex++;
+
+var c_URJ537KOC27 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOC27 = L.polygon([[25.144845,75.889544],[25.143291,75.890746],[25.134281,75.879617],[25.129312,75.873982],[25.119633,75.880321],[25.115222,75.882792],[25.11176,75.88465],[25.109262,75.886001],[25.112365,75.891624],[25.115643,75.897611],[25.122354,75.909694],[25.130184,75.919329],[25.136692,75.927397],[25.146656,75.93289],[25.152103,75.935949],[25.154698,75.93346],[25.160836,75.927284],[25.156713,75.90831],[25.154329,75.903509],[25.163628,75.901654],[25.168367,75.901225],[25.170616,75.878],[25.168441,75.877743],[25.162093,75.873344],[25.144845,75.889544]],{
+    color: c_URJ537KOC27,
+    fillColor: c_URJ537KOC27,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOC27.bindTooltip("URJ537KOC27", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOC27.bindPopup("<b>URJ537KOC27</b>");
+
+allLayers.push(poly_URJ537KOC27);
+
+colorIndex++;
+
+var c_URJ537KOA20 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOA20 = L.polygon([[25.15091,75.857162],[25.144698,75.85825],[25.140868,75.85935],[25.141395,75.865904],[25.14567,75.865254],[25.148486,75.865048],[25.151361,75.864982],[25.151122,75.860139],[25.151042,75.858431],[25.150976,75.857743],[25.15091,75.857162]],{
+    color: c_URJ537KOA20,
+    fillColor: c_URJ537KOA20,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOA20.bindTooltip("URJ537KOA20", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOA20.bindPopup("<b>URJ537KOA20</b>");
+
+allLayers.push(poly_URJ537KOA20);
+
+colorIndex++;
+
+var c_URJ537KOA23 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOA23 = L.polygon([[25.150518,75.853017],[25.140438,75.854269],[25.140668,75.856781],[25.150634,75.854633],[25.150518,75.853017]],{
+    color: c_URJ537KOA23,
+    fillColor: c_URJ537KOA23,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOA23.bindTooltip("URJ537KOA23", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOA23.bindPopup("<b>URJ537KOA23</b>");
+
+allLayers.push(poly_URJ537KOA23);
+
+colorIndex++;
+
+var c_URJ537KOA36 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOA36 = L.polygon([[25.150634,75.854633],[25.140668,75.856781],[25.140868,75.85935],[25.144893,75.858164],[25.15091,75.857162],[25.150634,75.854633]],{
+    color: c_URJ537KOA36,
+    fillColor: c_URJ537KOA36,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOA36.bindTooltip("URJ537KOA36", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOA36.bindPopup("<b>URJ537KOA36</b>");
+
+allLayers.push(poly_URJ537KOA36);
+
+colorIndex++;
+
+var c_URJ537KOB20 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB20 = L.polygon([[25.154128,75.844149],[25.147408,75.844003],[25.147243,75.84613],[25.148359,75.852496],[25.154128,75.844149]],{
+    color: c_URJ537KOB20,
+    fillColor: c_URJ537KOB20,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOB20.bindTooltip("URJ537KOB20", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOB20.bindPopup("<b>URJ537KOB20</b>");
+
+allLayers.push(poly_URJ537KOB20);
+
+colorIndex++;
+
+var c_URJ537KOB21 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB21 = L.polygon([[25.164587,75.85001],[25.154128,75.844149],[25.148359,75.852496],[25.148599,75.853238],[25.1644,75.851361],[25.164587,75.85001]],{
+    color: c_URJ537KOB21,
+    fillColor: c_URJ537KOB21,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOB21.bindTooltip("URJ537KOB21", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOB21.bindPopup("<b>URJ537KOB21</b>");
+
+allLayers.push(poly_URJ537KOB21);
+
+colorIndex++;
+
+var c_URJ537KOB25 = colors[colorIndex % colors.length];
+
+var poly_URJ537KOB25 = L.polygon([[25.171085,75.84976],[25.172153,75.847576],[25.17248,75.846851],[25.17281,75.84611],[25.170897,75.846701],[25.169882,75.844418],[25.169521,75.843525],[25.169316,75.843568],[25.167033,75.843683],[25.165337,75.84389],[25.165197,75.845192],[25.164764,75.847758],[25.164587,75.85001],[25.1644,75.851361],[25.166189,75.851308],[25.167083,75.851409],[25.16753,75.851482],[25.167831,75.851475],[25.167977,75.851683],[25.17022,75.85194],[25.170556,75.851127],[25.171085,75.84976]],{
+    color: c_URJ537KOB25,
+    fillColor: c_URJ537KOB25,
+    fillOpacity: 0.45,
+    weight: 2
+}).addTo(map);
+
+poly_URJ537KOB25.bindTooltip("URJ537KOB25", {
+    permanent:true,
+    direction:"center",
+    className:"custom-label"
+});
+
+poly_URJ537KOB25.bindPopup("<b>URJ537KOB25</b>");
+
+allLayers.push(poly_URJ537KOB25);
+
+colorIndex++;
+
+
+/* Auto Fit All Sectors */
+if(allLayers.length > 0){
+    var group = new L.featureGroup(allLayers);
+    map.fitBounds(group.getBounds().pad(0.12));
+}
+
+/* Live GPS Tracking */
+function startLiveLocation(){
+
+    if(!navigator.geolocation){
+        alert("GPS not supported");
+        return;
+    }
+
+    if(watchId){
+        navigator.geolocation.clearWatch(watchId);
+    }
+
+    watchId = navigator.geolocation.watchPosition(function(pos){
+
+        var lat = pos.coords.latitude;
+        var lon = pos.coords.longitude;
+
+        if(!userMarker){
+            userMarker = L.circleMarker([lat,lon],{
+                radius:7,
+                color:"#1a73e8",
+                fillColor:"#1a73e8",
+                fillOpacity:0.9
+            }).addTo(map).bindPopup("You are here");
+        }else{
+            userMarker.setLatLng([lat,lon]);
+        }
+
+    },function(){
+        alert("Location permission denied");
+    },{
+        enableHighAccuracy:true,
+        maximumAge:5000,
+        timeout:10000
+    });
+}
+
+/* GPS Button */
+document.getElementById("gpsBtn").onclick = function(){
+    startLiveLocation();
+};
+
+</script>
+
+<script>
+var sectorData = {"URJ537KOC17": {"agent": "Aashik Husain", "industry": 110815, "pp_txn": 29562, "pp_ms": 26.7, "paytm_txn": 65690, "paytm_ms": 59.3, "ssd": 11, "hpra": 6, "vpa": 104}, "URJ537KOC14": {"agent": "Rishabh singh tomar", "industry": 110755, "pp_txn": 34390, "pp_ms": 31.0, "paytm_txn": 60180, "paytm_ms": 54.3, "ssd": 52, "hpra": 21, "vpa": 144}, "URJ537KOC27": {"agent": "Ashish Panwar", "industry": 91058, "pp_txn": 32299, "pp_ms": 35.5, "paytm_txn": 52914, "paytm_ms": 58.1, "ssd": 26, "hpra": 3, "vpa": 138}, "URJ537KOC26": {"agent": "Unassigned", "industry": 51453, "pp_txn": 14261, "pp_ms": 27.7, "paytm_txn": 32717, "paytm_ms": 63.6, "ssd": 8, "hpra": 7, "vpa": 70}, "URJ537KOC12": {"agent": "Ajay Sen", "industry": 44604, "pp_txn": 10973, "pp_ms": 24.6, "paytm_txn": 28190, "paytm_ms": 63.2, "ssd": 7, "hpra": 7, "vpa": 42}, "URJ537KOC25": {"agent": "Pranav Parashar", "industry": 81193, "pp_txn": 26693, "pp_ms": 32.9, "paytm_txn": 41067, "paytm_ms": 50.6, "ssd": 33, "hpra": 11, "vpa": 130}, "URJ537KOC03": {"agent": "Adil Khan", "industry": 38201, "pp_txn": 10732, "pp_ms": 28.1, "paytm_txn": 22121, "paytm_ms": 57.9, "ssd": 14, "hpra": 4, "vpa": 34}, "URJ537KOC16": {"agent": "Divya Vaishnav", "industry": 29325, "pp_txn": 7286, "pp_ms": 24.8, "paytm_txn": 17846, "paytm_ms": 60.9, "ssd": 7, "hpra": 5, "vpa": 44}, "URJ537KOC06": {"agent": "Vasudev Tiwari", "industry": 58656, "pp_txn": 22645, "pp_ms": 38.6, "paytm_txn": 32190, "paytm_ms": 54.9, "ssd": 19, "hpra": 10, "vpa": 109}, "URJ537KOC23": {"agent": "Ajay Sen", "industry": 56932, "pp_txn": 19288, "pp_ms": 33.9, "paytm_txn": 28832, "paytm_ms": 50.6, "ssd": 32, "hpra": 7, "vpa": 48}, "URJ537KOA20": {"agent": "Jayshiv Chobdar", "industry": 60757, "pp_txn": 23008, "pp_ms": 37.9, "paytm_txn": 31117, "paytm_ms": 51.2, "ssd": 16, "hpra": 8, "vpa": 40}, "URJ537KOB25": {"agent": "Naveen Kumar Sain", "industry": 43523, "pp_txn": 14822, "pp_ms": 34.1, "paytm_txn": 22442, "paytm_ms": 51.6, "ssd": 24, "hpra": 10, "vpa": 56}, "URJ537KOC11": {"agent": "Aashik Husain", "industry": 33525, "pp_txn": 11608, "pp_ms": 34.6, "paytm_txn": 19140, "paytm_ms": 57.1, "ssd": 8, "hpra": 8, "vpa": 37}, "URJ537KOC05": {"agent": "Divya Vaishnav", "industry": 14476, "pp_txn": 3248, "pp_ms": 22.4, "paytm_txn": 10479, "paytm_ms": 72.4, "ssd": 5, "hpra": 2, "vpa": 44}, "URJ537KOC20": {"agent": "Jayshiv Chobdar", "industry": 37174, "pp_txn": 12358, "pp_ms": 33.2, "paytm_txn": 19136, "paytm_ms": 51.5, "ssd": 17, "hpra": 7, "vpa": 11}, "URJ537KOB21": {"agent": "Rishabh singh tomar", "industry": 30177, "pp_txn": 10534, "pp_ms": 34.9, "paytm_txn": 13680, "paytm_ms": 45.3, "ssd": 13, "hpra": 7, "vpa": 33}, "URJ537KOC21": {"agent": "Divanshu Sud", "industry": 19347, "pp_txn": 4372, "pp_ms": 22.6, "paytm_txn": 7431, "paytm_ms": 38.4, "ssd": 7, "hpra": 3, "vpa": 21}, "URJ537KOC18": {"agent": "Dinesh Prajapati", "industry": 21298, "pp_txn": 6604, "pp_ms": 31.0, "paytm_txn": 9218, "paytm_ms": 43.3, "ssd": 6, "hpra": 1, "vpa": 18}, "URJ537KOC13": {"agent": "Dinesh Prajapati", "industry": 16776, "pp_txn": 6104, "pp_ms": 36.4, "paytm_txn": 8330, "paytm_ms": 49.7, "ssd": 4, "hpra": 1, "vpa": 31}, "URJ537KOC08": {"agent": "Gouravsingh Bhadoriya", "industry": 44039, "pp_txn": 18099, "pp_ms": 41.1, "paytm_txn": 20305, "paytm_ms": 46.1, "ssd": 14, "hpra": 4, "vpa": 73}, "URJ537KOC19": {"agent": "Rajan Khinchi", "industry": 41255, "pp_txn": 16711, "pp_ms": 40.5, "paytm_txn": 18246, "paytm_ms": 44.2, "ssd": 14, "hpra": 8, "vpa": 31}, "URJ537KOC10": {"agent": "Gouravsingh Bhadoriya", "industry": 95709, "pp_txn": 39244, "pp_ms": 41.0, "paytm_txn": 40662, "paytm_ms": 42.5, "ssd": 33, "hpra": 8, "vpa": 86}, "URJ537KOC22": {"agent": "Vikrant Naruka", "industry": 9606, "pp_txn": 3990, "pp_ms": 41.5, "paytm_txn": 4334, "paytm_ms": 45.1, "ssd": 4, "hpra": 1, "vpa": 4}, "URJ537KOC01": {"agent": "Adil Khan", "industry": 23500, "pp_txn": 13193, "pp_ms": 56.1, "paytm_txn": 7577, "paytm_ms": 32.2, "ssd": 8, "hpra": 5, "vpa": 17}, "URJ537KOB20": {"agent": "Rishabh singh tomar", "industry": 23683, "pp_txn": 11543, "pp_ms": 48.7, "paytm_txn": 9700, "paytm_ms": 41.0, "ssd": 11, "hpra": 2, "vpa": 29}, "URJ537KOC02": {"agent": "Kuldeep", "industry": 156057, "pp_txn": 69157, "pp_ms": 44.3, "paytm_txn": 67427, "paytm_ms": 43.2, "ssd": 50, "hpra": 16, "vpa": 104}, "URJ537KOA36": {"agent": "Giriraj", "industry": 26477, "pp_txn": 15738, "pp_ms": 59.4, "paytm_txn": 9364, "paytm_ms": 35.4, "ssd": 6, "hpra": 5, "vpa": 25}, "URJ537KOC09": {"agent": "Jayshiv Chobdar", "industry": 30280, "pp_txn": 13127, "pp_ms": 43.4, "paytm_txn": 12852, "paytm_ms": 42.4, "ssd": 14, "hpra": 4, "vpa": 29}, "URJ537KOC15": {"agent": "Gaurav Bhatnagar", "industry": 38632, "pp_txn": 19114, "pp_ms": 49.5, "paytm_txn": 13885, "paytm_ms": 35.9, "ssd": 18, "hpra": 3, "vpa": 49}, "URJ537KOC24": {"agent": "Sonu Kashyap", "industry": 49865, "pp_txn": 25343, "pp_ms": 50.8, "paytm_txn": 17035, "paytm_ms": 34.2, "ssd": 23, "hpra": 3, "vpa": 26}, "URJ537KOC07": {"agent": "Divesh Kumar", "industry": 47581, "pp_txn": 24611, "pp_ms": 51.7, "paytm_txn": 18525, "paytm_ms": 38.9, "ssd": 7, "hpra": 12, "vpa": 53}, "URJ537KOA23": {"agent": "Ajay Sen", "industry": 71338, "pp_txn": 37306, "pp_ms": 52.3, "paytm_txn": 25296, "paytm_ms": 35.5, "ssd": 23, "hpra": 8, "vpa": 25}, "URJ537KOC04": {"agent": "Sanjay Kumar Sen", "industry": 42405, "pp_txn": 21484, "pp_ms": 50.7, "paytm_txn": 16713, "paytm_ms": 39.4, "ssd": 13, "hpra": 4, "vpa": 16}};
+
+function getColor(ms){
+ if(ms>=45) return "#2ecc71";
+ if(ms>=30) return "#f1c40f";
+ return "#e74c3c";
+}
+
+for (const s in sectorData){
+ let p = window['poly_'+s];
+ if(!p) continue;
+ let d = sectorData[s];
+ p.setStyle({color:getColor(d.pp_ms),fillColor:getColor(d.pp_ms),fillOpacity:0.55});
+ p.bindPopup(`
+ <b>Sector :</b> ${s}<br><br>
+ <b>Assign Agent :</b> ${d.agent}<br>
+ <b>Total Industry :</b> ${d.industry}<br><br>
+ <b>PhonePe Txn :</b> ${d.pp_txn}<br>
+ <b>PhonePe MS :</b> ${d.pp_ms}%<br><br>
+ <b>Paytm Txn :</b> ${d.paytm_txn}<br>
+ <b>Paytm MS :</b> ${d.paytm_ms}%<br><br>
+ <b>SSD1Re Base :</b> ${d.ssd}<br>
+ <b>MSIM HPRA :</b> ${d.hpra}<br>
+ <b>MSIM VPA :</b> ${d.vpa}
+ `);
+}
+</script>
+
+
+<script>
+var sectorData = {"URJ537KOC17": {"agent": "Aashik Husain", "industry": 110815, "pp_txn": 29562, "pp_ms": 26.7, "paytm_txn": 65690, "paytm_ms": 59.3, "ssd": 11, "hpra": 6, "vpa": 104}, "URJ537KOC14": {"agent": "Rishabh singh tomar", "industry": 110755, "pp_txn": 34390, "pp_ms": 31.0, "paytm_txn": 60180, "paytm_ms": 54.3, "ssd": 52, "hpra": 21, "vpa": 144}, "URJ537KOC27": {"agent": "Ashish Panwar", "industry": 91058, "pp_txn": 32299, "pp_ms": 35.5, "paytm_txn": 52914, "paytm_ms": 58.1, "ssd": 26, "hpra": 3, "vpa": 138}, "URJ537KOC26": {"agent": "Unassigned", "industry": 51453, "pp_txn": 14261, "pp_ms": 27.7, "paytm_txn": 32717, "paytm_ms": 63.6, "ssd": 8, "hpra": 7, "vpa": 70}, "URJ537KOC12": {"agent": "Ajay Sen", "industry": 44604, "pp_txn": 10973, "pp_ms": 24.6, "paytm_txn": 28190, "paytm_ms": 63.2, "ssd": 7, "hpra": 7, "vpa": 42}, "URJ537KOC25": {"agent": "Pranav Parashar", "industry": 81193, "pp_txn": 26693, "pp_ms": 32.9, "paytm_txn": 41067, "paytm_ms": 50.6, "ssd": 33, "hpra": 11, "vpa": 130}, "URJ537KOC03": {"agent": "Adil Khan", "industry": 38201, "pp_txn": 10732, "pp_ms": 28.1, "paytm_txn": 22121, "paytm_ms": 57.9, "ssd": 14, "hpra": 4, "vpa": 34}, "URJ537KOC16": {"agent": "Divya Vaishnav", "industry": 29325, "pp_txn": 7286, "pp_ms": 24.8, "paytm_txn": 17846, "paytm_ms": 60.9, "ssd": 7, "hpra": 5, "vpa": 44}, "URJ537KOC06": {"agent": "Vasudev Tiwari", "industry": 58656, "pp_txn": 22645, "pp_ms": 38.6, "paytm_txn": 32190, "paytm_ms": 54.9, "ssd": 19, "hpra": 10, "vpa": 109}, "URJ537KOC23": {"agent": "Ajay Sen", "industry": 56932, "pp_txn": 19288, "pp_ms": 33.9, "paytm_txn": 28832, "paytm_ms": 50.6, "ssd": 32, "hpra": 7, "vpa": 48}, "URJ537KOA20": {"agent": "Jayshiv Chobdar", "industry": 60757, "pp_txn": 23008, "pp_ms": 37.9, "paytm_txn": 31117, "paytm_ms": 51.2, "ssd": 16, "hpra": 8, "vpa": 40}, "URJ537KOB25": {"agent": "Naveen Kumar Sain", "industry": 43523, "pp_txn": 14822, "pp_ms": 34.1, "paytm_txn": 22442, "paytm_ms": 51.6, "ssd": 24, "hpra": 10, "vpa": 56}, "URJ537KOC11": {"agent": "Aashik Husain", "industry": 33525, "pp_txn": 11608, "pp_ms": 34.6, "paytm_txn": 19140, "paytm_ms": 57.1, "ssd": 8, "hpra": 8, "vpa": 37}, "URJ537KOC05": {"agent": "Divya Vaishnav", "industry": 14476, "pp_txn": 3248, "pp_ms": 22.4, "paytm_txn": 10479, "paytm_ms": 72.4, "ssd": 5, "hpra": 2, "vpa": 44}, "URJ537KOC20": {"agent": "Jayshiv Chobdar", "industry": 37174, "pp_txn": 12358, "pp_ms": 33.2, "paytm_txn": 19136, "paytm_ms": 51.5, "ssd": 17, "hpra": 7, "vpa": 11}, "URJ537KOB21": {"agent": "Rishabh singh tomar", "industry": 30177, "pp_txn": 10534, "pp_ms": 34.9, "paytm_txn": 13680, "paytm_ms": 45.3, "ssd": 13, "hpra": 7, "vpa": 33}, "URJ537KOC21": {"agent": "Divanshu Sud", "industry": 19347, "pp_txn": 4372, "pp_ms": 22.6, "paytm_txn": 7431, "paytm_ms": 38.4, "ssd": 7, "hpra": 3, "vpa": 21}, "URJ537KOC18": {"agent": "Dinesh Prajapati", "industry": 21298, "pp_txn": 6604, "pp_ms": 31.0, "paytm_txn": 9218, "paytm_ms": 43.3, "ssd": 6, "hpra": 1, "vpa": 18}, "URJ537KOC13": {"agent": "Dinesh Prajapati", "industry": 16776, "pp_txn": 6104, "pp_ms": 36.4, "paytm_txn": 8330, "paytm_ms": 49.7, "ssd": 4, "hpra": 1, "vpa": 31}, "URJ537KOC08": {"agent": "Gouravsingh Bhadoriya", "industry": 44039, "pp_txn": 18099, "pp_ms": 41.1, "paytm_txn": 20305, "paytm_ms": 46.1, "ssd": 14, "hpra": 4, "vpa": 73}, "URJ537KOC19": {"agent": "Rajan Khinchi", "industry": 41255, "pp_txn": 16711, "pp_ms": 40.5, "paytm_txn": 18246, "paytm_ms": 44.2, "ssd": 14, "hpra": 8, "vpa": 31}, "URJ537KOC10": {"agent": "Gouravsingh Bhadoriya", "industry": 95709, "pp_txn": 39244, "pp_ms": 41.0, "paytm_txn": 40662, "paytm_ms": 42.5, "ssd": 33, "hpra": 8, "vpa": 86}, "URJ537KOC22": {"agent": "Vikrant Naruka", "industry": 9606, "pp_txn": 3990, "pp_ms": 41.5, "paytm_txn": 4334, "paytm_ms": 45.1, "ssd": 4, "hpra": 1, "vpa": 4}, "URJ537KOC01": {"agent": "Adil Khan", "industry": 23500, "pp_txn": 13193, "pp_ms": 56.1, "paytm_txn": 7577, "paytm_ms": 32.2, "ssd": 8, "hpra": 5, "vpa": 17}, "URJ537KOB20": {"agent": "Rishabh singh tomar", "industry": 23683, "pp_txn": 11543, "pp_ms": 48.7, "paytm_txn": 9700, "paytm_ms": 41.0, "ssd": 11, "hpra": 2, "vpa": 29}, "URJ537KOC02": {"agent": "Kuldeep", "industry": 156057, "pp_txn": 69157, "pp_ms": 44.3, "paytm_txn": 67427, "paytm_ms": 43.2, "ssd": 50, "hpra": 16, "vpa": 104}, "URJ537KOA36": {"agent": "Giriraj", "industry": 26477, "pp_txn": 15738, "pp_ms": 59.4, "paytm_txn": 9364, "paytm_ms": 35.4, "ssd": 6, "hpra": 5, "vpa": 25}, "URJ537KOC09": {"agent": "Jayshiv Chobdar", "industry": 30280, "pp_txn": 13127, "pp_ms": 43.4, "paytm_txn": 12852, "paytm_ms": 42.4, "ssd": 14, "hpra": 4, "vpa": 29}, "URJ537KOC15": {"agent": "Gaurav Bhatnagar", "industry": 38632, "pp_txn": 19114, "pp_ms": 49.5, "paytm_txn": 13885, "paytm_ms": 35.9, "ssd": 18, "hpra": 3, "vpa": 49}, "URJ537KOC24": {"agent": "Sonu Kashyap", "industry": 49865, "pp_txn": 25343, "pp_ms": 50.8, "paytm_txn": 17035, "paytm_ms": 34.2, "ssd": 23, "hpra": 3, "vpa": 26}, "URJ537KOC07": {"agent": "Divesh Kumar", "industry": 47581, "pp_txn": 24611, "pp_ms": 51.7, "paytm_txn": 18525, "paytm_ms": 38.9, "ssd": 7, "hpra": 12, "vpa": 53}, "URJ537KOA23": {"agent": "Ajay Sen", "industry": 71338, "pp_txn": 37306, "pp_ms": 52.3, "paytm_txn": 25296, "paytm_ms": 35.5, "ssd": 23, "hpra": 8, "vpa": 25}, "URJ537KOC04": {"agent": "Sanjay Kumar Sen", "industry": 42405, "pp_txn": 21484, "pp_ms": 50.7, "paytm_txn": 16713, "paytm_ms": 39.4, "ssd": 13, "hpra": 4, "vpa": 16}};
+
+function getColor(ms){
+ if(ms>=45) return "#2ecc71";
+ if(ms>=30) return "#f1c40f";
+ return "#e74c3c";
+}
+
+function overallBase(d){ return d.ssd + d.hpra + d.vpa; }
+
+function targetTxn(d){
+ var targetMS = d.pp_ms + 2;
+ return Math.round((targetMS/100) * d.industry);
+}
+
+for (const s in sectorData){
+ let p = window['poly_'+s];
+ if(!p) continue;
+ let d = sectorData[s];
+ p.setStyle({color:getColor(d.pp_ms),fillColor:getColor(d.pp_ms)});
+
+ p.bindPopup(`
+ <b>Sector :</b> ${s}<br><br>
+ <b>Agent :</b> ${d.agent}<br>
+ <b>Total Industry :</b> ${d.industry}<br><br>
+ <b>PhonePe Txn :</b> ${d.pp_txn}<br>
+ <b>PhonePe MS :</b> ${d.pp_ms}%<br><br>
+ <b>Paytm Txn :</b> ${d.paytm_txn}<br>
+ <b>Paytm MS :</b> ${d.paytm_ms}%<br><br>
+ <b>MSIM Attack :</b> ${d.ssd}<br>
+ <b>MSIM HPRA :</b> ${d.hpra}<br>
+ <b>MSIM VPA :</b> ${d.vpa}<br>
+ <b>Overall Base :</b> ${overallBase(d)}<br><br>
+ <b>Txn Needed +2% MS :</b> ${targetTxn(d)}
+ `);
+}
+
+// weak sectors dashboard
+var arr = Object.entries(sectorData).map(([s,d])=>({sector:s,ms:d.pp_ms}));
+arr.sort((a,b)=>a.ms-b.ms);
+var weak = arr.slice(0,5);
+
+var box = document.createElement("div");
+box.style.position="absolute";
+box.style.left="10px";
+box.style.bottom="10px";
+box.style.background="white";
+box.style.padding="10px";
+box.style.fontSize="12px";
+box.style.border="1px solid #ccc";
+box.innerHTML="<b>Top Weak Sectors</b><br>"+weak.map(x=>x.sector+" "+x.ms+"%").join("<br>");
+document.body.appendChild(box);
+
+</script>
+
+
+<script>
+function pointInPolygon(point, vs){
+ var x = point[0], y = point[1];
+ var inside = false;
+ for (var i=0, j=vs.length-1; i<vs.length; j=i++){
+   var xi = vs[i].lat, yi = vs[i].lng;
+   var xj = vs[j].lat, yj = vs[j].lng;
+   var intersect = ((yi>y)!=(yj>y)) &&
+     (x < (xj-xi)*(y-yi)/(yj-yi)+xi);
+   if(intersect) inside = !inside;
+ }
+ return inside;
+}
+
+var sectorBox = document.createElement("div");
+sectorBox.style.position="absolute";
+sectorBox.style.top="65px";
+sectorBox.style.left="10px";
+sectorBox.style.background="white";
+sectorBox.style.padding="8px";
+sectorBox.style.fontSize="13px";
+sectorBox.style.border="1px solid #999";
+sectorBox.innerHTML="<b>Sector :</b> Detecting...";
+document.body.appendChild(sectorBox);
+
+function detectSector(lat,lng){
+ for (var key in window){
+   if(key.startsWith("poly_")){
+     var poly = window[key];
+     var coords = poly.getLatLngs()[0];
+     if(pointInPolygon([lat,lng], coords)){
+        var s = key.replace("poly_","");
+        if(sectorData[s]){
+          sectorBox.innerHTML="<b>You are in</b><br>"+s+"<br><br>"
+            +"Agent: "+sectorData[s].agent+"<br>"
+            +"PhonePe MS: "+sectorData[s].pp_ms+"%";
+        }else{
+          sectorBox.innerHTML="<b>You are in</b><br>"+s;
+        }
+        return;
+     }
+   }
+ }
+ sectorBox.innerHTML="Outside mapped sectors";
+}
+
+if(navigator.geolocation){
+ navigator.geolocation.watchPosition(function(pos){
+   var lat = pos.coords.latitude;
+   var lng = pos.coords.longitude;
+   detectSector(lat,lng);
+ });
+}
+</script>
+
+
+<script>
+var ssdRBase = {"URJ537KOC14": 110, "URJ537KOC02": 96, "URJ537KOC10": 80, "URJ537KOC25": 54, "URJ537KOC23": 59, "URJ537KOC27": 49, "URJ537KOB25": 54, "URJ537KOC24": 52, "URJ537KOA23": 37, "URJ537KOC06": 46, "URJ537KOC15": 29, "URJ537KOC20": 42, "URJ537KOA20": 37, "URJ537KOC19": 43, "URJ537KOC08": 36, "URJ537KOC09": 24, "URJ537KOC03": 24, "URJ537KOC04": 24, "URJ537KOB21": 18, "URJ537KOC17": 34, "URJ537KOB20": 15, "URJ537KOC01": 20, "URJ537KOC11": 19, "URJ537KOC26": 15, "URJ537KOC12": 19, "URJ537KOC07": 26, "URJ537KOC21": 16, "URJ537KOC16": 10, "URJ537KOA36": 14, "URJ537KOC18": 10, "URJ537KOC05": 13, "URJ537KOC13": 18, "URJ537KOC22": 9};
+
+function reqMonthly(target,current){
+  var diff = target-current;
+  if(diff<0) diff=0;
+  return Math.round(diff/30);
+}
+
+if(typeof sectorData!=="undefined"){
+ for(const s in sectorData){
+   let d=sectorData[s];
+   let ssd_r = ssdRBase[s] || 0;
+   d.ssd_r = ssd_r;
+
+   // recompute popup if polygon exists
+   let p = window['poly_'+s];
+   if(!p) continue;
+
+   let target = Math.round(((d.pp_ms+2)/100)*d.industry);
+   let monthly = reqMonthly(target,d.pp_txn);
+   let overall = (d.ssd||0) + (d.hpra||0) + (d.vpa||0) + ssd_r;
+
+   p.bindPopup(`
+   <b>Sector :</b> ${s}<br><br>
+   <b>Agent :</b> ${d.agent}<br>
+   <b>Total Industry :</b> ${d.industry}<br><br>
+
+   <b>PhonePe Txn :</b> ${d.pp_txn}<br>
+   <b>PhonePe MS :</b> ${d.pp_ms}%<br><br>
+
+   <b>Paytm Txn :</b> ${d.paytm_txn}<br>
+   <b>Paytm MS :</b> ${d.paytm_ms}%<br><br>
+
+   <b>MSIM Attack :</b> ${d.ssd}<br>
+   <b>SSD_R Base :</b> ${ssd_r}<br>
+   <b>MSIM HPRA :</b> ${d.hpra}<br>
+   <b>MSIM VPA :</b> ${d.vpa}<br>
+   <b>Overall Base :</b> ${overall}<br><br>
+
+   <b>Txn Needed +2% MS :</b> ${target}<br><br><b>Required this month :</b> ${Math.round(target/30)}
+   `);
+ }
+}
+</script>
+
+
+<script>
+if(typeof sectorData !== "undefined"){
+  var arr = Object.entries(sectorData).map(([s,d])=>({sector:s, ms:d.pp_ms}));
+  arr.sort((a,b)=>b.ms-a.ms);
+
+  var top5 = arr.slice(0,5);
+  var bottom5 = arr.slice(-5).reverse();
+
+  var dash = document.createElement("div");
+  dash.style.position="absolute";
+  dash.style.right="10px";
+  dash.style.bottom="10px";
+  dash.style.background="white";
+  dash.style.padding="10px";
+  dash.style.fontSize="12px";
+  dash.style.border="1px solid #ccc";
+  dash.style.maxWidth="180px";
+
+  dash.innerHTML =
+    "<b>Top Sectors</b><br>" +
+    top5.map(x=>x.sector+" "+x.ms+"%").join("<br>") +
+    "<br><br><b>Weak Sectors</b><br>" +
+    bottom5.map(x=>x.sector+" "+x.ms+"%").join("<br>");
+
+  document.body.appendChild(dash);
+}
+</script>
+
+
+<script>
+function pointInPoly(lat,lng,poly){
+ var inside=false;
+ var pts=poly.getLatLngs()[0];
+ for(var i=0,j=pts.length-1;i<pts.length;j=i++){
+   var xi=pts[i].lat, yi=pts[i].lng;
+   var xj=pts[j].lat, yj=pts[j].lng;
+   var intersect=((yi>lng)!=(yj>lng)) && (lat < (xj-xi)*(lng-yi)/(yj-yi)+xi);
+   if(intersect) inside=!inside;
+ }
+ return inside;
+}
+
+var detectBox=document.createElement("div");
+detectBox.style.position="absolute";
+detectBox.style.top="60px";
+detectBox.style.left="10px";
+detectBox.style.background="white";
+detectBox.style.padding="8px";
+detectBox.style.border="1px solid #ccc";
+detectBox.style.fontSize="13px";
+detectBox.innerHTML="Detecting sector...";
+document.body.appendChild(detectBox);
+
+function detectSector(lat,lng){
+ for(var key in window){
+   if(key.startsWith("poly_")){
+     var poly=window[key];
+     if(poly && pointInPoly(lat,lng,poly)){
+       var sec=key.replace("poly_","");
+       if(sectorData[sec]){
+         detectBox.innerHTML="<b>You are in</b><br>"+sec+"<br>"+sectorData[sec].agent;
+       }else{
+         detectBox.innerHTML="Sector: "+sec;
+       }
+       return;
+     }
+   }
+ }
+ detectBox.innerHTML="Outside sector";
+}
+
+if(navigator.geolocation){
+ navigator.geolocation.watchPosition(function(pos){
+   detectSector(pos.coords.latitude,pos.coords.longitude);
+ });
+}
+</script>
+
+</body>
+</html>
