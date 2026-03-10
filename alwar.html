@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Alwar Sector Dashboard</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f5f5f5
+}
+
+.header{
+background:#5f259f;
+color:white;
+padding:14px;
+font-size:22px;
+font-weight:bold
+}
+
+.controls{
+background:white;
+padding:10px;
+display:flex;
+gap:10px;
+align-items:center;
+box-shadow:0 2px 6px rgba(0,0,0,0.2)
+}
+
+#map{
+height:82vh
+}
+
+input,select{
+padding:6px;
+font-size:14px
+}
+
+.footer{
+background:#e7d8ff;
+padding:12px;
+text-align:center;
+font-weight:bold
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+Alwar Sector Dashboard
+</div>
+
+<div class="controls">
+
+<input id="sectorSearch" placeholder="Search Sector">
+
+<select id="asmFilter">
+<option value="All">All ASM</option>
+<option>Jitesh Singh</option>
+<option>Arjun singh parmar</option>
+<option>Sandeep Sharma</option>
+<option>Manohar Lal Yadav</option>
+
+</select>
+
+</div>
+
+<div id="map"></div>
+
+<div class="footer">
+Created and hosted by Rahul Bhatt
+</div>
+
+<script>
+
+var map=L.map('map').setView([27.55,76.62],9);
+
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+).addTo(map);
+
+var sectorData={
+
+"RRJ500KOT01":{
+sh:"Rahul Sharma",
+asm:"Jitesh Singh",
+phonepe:91372,
+paytm:207316,
+industry:377619,
+ppms:"24%",
+ptmms:"55%",
+ssd_msim:70,
+ssd:144,
+winback:5,
+vpa:164,
+vpa_msim:72,
+lending:22
+},
+
+"RRJ500KOT02":{
+sh:"Rahul Sharma",
+asm:"Jitesh Singh",
+phonepe:46364,
+paytm:141340,
+industry:253759,
+ppms:"18%",
+ptmms:"56%",
+ssd_msim:40,
+ssd:92,
+winback:3,
+vpa:174,
+vpa_msim:54,
+lending:14
+}
+
+};
+
+var layerGroup=L.layerGroup().addTo(map);
+
+fetch("alwar.kml.xml")
+
+.then(r=>r.text())
+
+.then(function(kml){
+
+var parser=new DOMParser();
+
+var xml=parser.parseFromString(kml,"text/xml");
+
+var placemarks=xml.getElementsByTagName("Placemark");
+
+for(var i=0;i<placemarks.length;i++){
+
+var name=placemarks[i]
+.getElementsByTagName("name")[0]
+.textContent;
+
+if(!sectorData[name]) continue;
+
+var coords=placemarks[i]
+.getElementsByTagName("coordinates")[0]
+.textContent.trim().split(" ");
+
+var latlngs=[];
+
+coords.forEach(function(c){
+
+var p=c.split(",");
+
+latlngs.push([parseFloat(p[1]),parseFloat(p[0])]);
+
+});
+
+var d=sectorData[name];
+
+var poly=L.polygon(latlngs,{
+color:"#5f259f",
+weight:2,
+fillOpacity:0.4
+}).addTo(layerGroup);
+
+poly.bindPopup(
+
+"<b>Sector ID: "+name+"</b><br><br>"+
+
+"SH Name: "+d.sh+"<br>"+
+"ASM / CSM Name: "+d.asm+"<br><br>"+
+
+"<b>Transactions</b><br>"+
+"PhonePe Txn: "+d.phonepe+"<br>"+
+"Paytm Txn: "+d.paytm+"<br>"+
+"Industry Txn: "+d.industry+"<br><br>"+
+
+"<b>Market Share</b><br>"+
+"PhonePe MS: "+d.ppms+"<br>"+
+"Paytm MS: "+d.ptmms+"<br><br>"+
+
+"<b>Products</b><br>"+
+"SSD_Re1_MSIM: "+d.ssd_msim+"<br>"+
+"SSD_Re1: "+d.ssd+"<br>"+
+"SS HP MSIM Winback: "+d.winback+"<br><br>"+
+
+"<b>Activation</b><br>"+
+"VPA: "+d.vpa+"<br>"+
+"VPA_MSIM: "+d.vpa_msim+"<br>"+
+"Lending: "+d.lending
+
+);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
