@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhatsApp Group Invite Sender</title>
+<title>PhonePe Training Invite Tool</title>
 
 <style>
 
@@ -35,6 +35,7 @@ h1{
     margin-bottom:15px;
     color:#5f259f;
     font-size:14px;
+    line-height:1.6;
 }
 
 textarea{
@@ -98,15 +99,17 @@ th{
 
 <div class="container">
 
-<h1>WhatsApp Group Invite Tool</h1>
+<h1>PhonePe Training Invite Tool</h1>
 
 <div class="info">
+
 Paste mobile numbers only.<br><br>
 
 Example:<br>
 919876543210<br>
 919812345678<br>
 919999999999
+
 </div>
 
 <textarea id="numbers" placeholder="Paste mobile numbers here..."></textarea>
@@ -180,10 +183,15 @@ async function startSending(){
         const num = contacts[i].trim();
 
         const message =
-`Hello,
+`📢 PhonePe Training Invite
 
-Join WhatsApp Group:
-${groupLink}`;
+*Aapke April month mai TP kam the jiski wajh se aap Bottom Agent ki list Mai ho.
+Is group ko join kro Training ke lie*
+
+${groupLink}
+
+Rahul Bhatt
+Regional Capability Manager`;
 
         const encoded = encodeURIComponent(message);
 
