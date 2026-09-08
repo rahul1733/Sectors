@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhonePe Rural BDA Payout Calculator</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --purple:#4b1fa8; --purple2:#6d35d6; --purple3:#f1ecff;
+  --text:#24213a; --muted:#74718a; --white:#fff; --border:#e8e3f5;
+  --green:#12805c; --shadow:0 12px 35px rgba(65,31,140,.12);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);
+  background:linear-gradient(135deg,#f7f4ff 0%,#fff 48%,#f2edff 100%);
+}
+.app{max-width:1180px;margin:auto;padding:22px}
+.header{
+  background:linear-gradient(135deg,#351477,#5c24bf 55%,#783ee1);
+  color:#fff;border-radius:22px;padding:25px 28px;box-shadow:var(--shadow);
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+}
+.brand{display:flex;align-items:center;gap:15px}
+.phonepe-brand{display:flex;align-items:center;gap:9px;background:#fff;border-radius:14px;padding:7px 11px 7px 7px;flex-shrink:0}
+.phonepe-brand{background:#fff;border-radius:13px;padding:6px 10px;display:flex;align-items:center}
+.phonepe-official-logo{display:block;width:132px;height:auto;max-height:42px;object-fit:contain}
+.language-bar{display:flex;justify-content:flex-end;align-items:center;gap:9px;margin:12px 2px 0}
+.language-label{font-size:11px;color:var(--muted);font-weight:700}
+.lang-toggle{display:flex;background:#eee9fa;padding:3px;border-radius:20px}
+.lang-btn{padding:7px 13px;border-radius:17px;background:transparent;color:#625b76;font-size:11px;font-weight:800}
+.lang-btn.active{background:var(--purple);color:#fff;box-shadow:0 2px 7px rgba(75,31,168,.22)}
+h1{margin:0;font-size:25px;letter-spacing:.2px;text-transform:uppercase}
+.identity{margin:20px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field label{display:block;font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+.field input{width:100%;padding:13px 14px;border:1px solid #dcd5ee;border-radius:11px;outline:none;font-size:14px;font-weight:700;color:var(--text);background:#fcfbff}
+.field input:focus{border-color:var(--purple2);box-shadow:0 0 0 3px #ede7ff}
+.summary{
+  margin:20px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px
+}
+.card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.summary .card{position:relative;overflow:hidden}
+.summary .card:after{content:"";position:absolute;right:-22px;top:-22px;width:80px;height:80px;border-radius:50%;background:var(--purple3)}
+.label{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.value{font-size:29px;font-weight:850;margin-top:8px;color:var(--purple)}
+
+.top-tools{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:stretch;margin:0 0 20px}
+.condition-link{background:linear-gradient(135deg,#fff,#f4efff);border:1px solid #d5c8f2;color:var(--purple);box-shadow:0 8px 24px rgba(75,31,168,.13);padding:13px 19px;border-radius:14px;white-space:nowrap;font-weight:850;display:flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+.condition-link:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);transform:translateX(-100%);transition:.5s}
+.condition-link:hover:before{transform:translateX(100%)}
+.additional-card{background:linear-gradient(135deg,#3c178b,#6b36d0);color:#fff;border-radius:18px;padding:16px 19px;box-shadow:var(--shadow)}
+.additional-head{display:flex;align-items:center;gap:11px}.additional-head b{font-size:16px}.additional-head small{display:block;opacity:.78;font-size:11px;margin-top:2px}
+.earning-icon{width:38px;height:38px;border-radius:11px;background:#fff;color:var(--purple);display:grid;place-items:center;font-weight:900;font-size:19px}
+.earning-items{display:flex;gap:26px;margin-top:12px}.earning-items>div{display:flex;align-items:center;gap:9px}.earning-items strong{font-size:22px}.earning-items span{font-size:11px;line-height:1.35}.earning-items small{opacity:.78}
+.compact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.mini-card{border:1px solid #ebe6f6;background:#fcfbff;border-radius:13px;padding:13px;min-width:0}
+.mini-card .activity,.mini-card .loan-name{min-height:34px;font-size:13px;line-height:1.3}
+.mini-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.mini-bottom input{width:78px}
+.mini-bottom .rate,.mini-bottom .loan-rate{font-size:13px}
+.modal{display:none;position:fixed;inset:0;background:rgba(22,13,48,.68);z-index:1000;padding:20px;overflow:auto;backdrop-filter:blur(4px)}
+.modal.show{display:flex;align-items:center;justify-content:center}
+.modal-box{width:min(940px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:22px;box-shadow:0 25px 80px rgba(0,0,0,.28);padding:23px}
+.modal-header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #eeeaf6;padding-bottom:15px;margin-bottom:16px}
+.modal-kicker{font-size:10px;color:var(--purple2);font-weight:900;letter-spacing:1px}.modal-header h2{margin:4px 0 0;color:var(--purple);font-size:24px}
+.close-btn{background:#f1edfa;color:var(--purple);width:38px;height:38px;padding:0;border-radius:50%;font-size:25px;line-height:1}
+.condition-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.condition-card{background:linear-gradient(145deg,#fbfaff,#f0ebff);border:1px solid #e4dcf7;border-radius:15px;padding:15px}
+.condition-card h3{font-size:14px;margin:0 0 7px;color:#271b45}.condition-card p{font-size:12px;line-height:1.5;margin:0;color:#514b63}
+.modal-notes{margin-top:15px;display:grid;gap:8px}.modal-notes>div{background:#f8f5ff;border-left:4px solid var(--purple2);border-radius:9px;padding:10px 12px;font-size:12px;line-height:1.45}
+.highlight-note{background:#fffbd8!important;border-left-color:#e0b800!important}
+.grid{display:grid;grid-template-columns:1.35fr .95fr;gap:20px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+.section-title h2{margin:0;font-size:18px}
+.pill{font-size:11px;font-weight:800;background:var(--purple3);color:var(--purple);padding:7px 10px;border-radius:20px}
+.row{
+  display:grid;grid-template-columns:1fr 110px 130px;gap:12px;align-items:center;
+  padding:13px 0;border-bottom:1px solid #f0edf7
+}
+.row:last-child{border-bottom:0}
+.activity{font-weight:700;font-size:14px}
+.rate{color:var(--purple);font-weight:800;text-align:right}
+input[type=number]{
+  width:100%;padding:11px 12px;border:1px solid #dcd5ee;border-radius:10px;
+  outline:none;font-size:14px;font-weight:700;color:var(--text);background:#fcfbff
+}
+input[type=number]:focus{border-color:var(--purple2);box-shadow:0 0 0 3px #ede7ff}
+.loan-row{
+  display:grid;grid-template-columns:1fr 95px 110px;gap:10px;align-items:center;
+  padding:12px 0;border-bottom:1px solid #f0edf7
+}
+.loan-name{font-size:13px;font-weight:750}.loan-rate{font-weight:850;color:var(--purple)}
+.loan-total{text-align:right;font-weight:800}
+.note{font-size:12px;color:#665f79;line-height:1.5;background:#fff8d9;border:1px solid #f1df83;padding:11px 13px;border-radius:11px;margin-top:15px}
+.total-box{
+  margin-top:18px;background:linear-gradient(135deg,#351477,#6731d0);color:#fff;border-radius:18px;padding:20px;
+}
+.total-line{display:flex;justify-content:space-between;align-items:center}
+.total-label{font-size:13px;opacity:.85}.grand{font-size:34px;font-weight:900}
+.actions{display:flex;gap:10px;margin-top:17px}
+button{
+  border:0;border-radius:11px;padding:12px 16px;font-weight:800;cursor:pointer;
+  font-size:13px;transition:.15s
+}
+.primary{background:#fff;color:var(--purple)}.secondary{background:#efeaff;color:var(--purple)}
+.dark{background:#2e1a62;color:#fff}.reset{background:#f5f3f9;color:#5e586d}
+button:hover{transform:translateY(-1px);filter:brightness(.98)}
+.breakdown{margin-top:20px}
+.breakdown table{width:100%;border-collapse:collapse;font-size:13px}
+.breakdown th,.breakdown td{padding:11px 8px;border-bottom:1px solid #eeeaf5;text-align:left}
+.breakdown th:last-child,.breakdown td:last-child{text-align:right}
+.breakdown th{color:var(--muted);font-size:11px;text-transform:uppercase}
+.empty{text-align:center;color:#89849a;padding:18px}
+.footer{text-align:center;color:#77718b;font-size:12px;padding:22px 0 8px}
+.toast{position:fixed;bottom:22px;right:22px;background:#21143f;color:#fff;padding:12px 16px;border-radius:11px;display:none;box-shadow:var(--shadow);font-size:13px}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.summary{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.summary .card{padding:13px 9px}.summary .label{font-size:9px;letter-spacing:.2px}.summary .value{font-size:18px}.identity{grid-template-columns:1fr}.header{align-items:flex-start}.top-tools{grid-template-columns:1fr}.condition-grid{grid-template-columns:1fr 1fr}.earning-items{gap:14px}}
+@media(max-width:560px){.app{padding:12px}.header{padding:20px}.row{grid-template-columns:1fr 80px 95px}.loan-row{grid-template-columns:1fr 70px 85px}.grand{font-size:28px}h1{font-size:19px}}
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  body{background:#fff}.app{max-width:none;padding:0}.header{box-shadow:none}.actions{display:none}
+  .card,.summary .card{box-shadow:none}.grid{grid-template-columns:1fr 1fr}
+  .footer{padding-top:10px}.identity{margin:12px 0}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div class="brand">
+      <div class="phonepe-brand" aria-label="PhonePe official logo">
+        <img class="phonepe-official-logo" src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe">
+      </div>
+      <div>
+        <h1>PhonePe Rural BDA Payout Calculator</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="language-bar">
+    <span class="language-label">Language / भाषा</span>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button id="langHi" class="lang-btn active" onclick="setLanguage('hi')">हिंदी</button>
+      <button id="langEn" class="lang-btn" onclick="setLanguage('en')">English</button>
+    </div>
+  </div>
+
+  <section class="identity card">
+    <div class="field">
+      <label for="agentName" id="agentLabel">एजेंट नाम</label>
+      <input id="agentName" type="text" placeholder="एजेंट नाम दर्ज करें">
+    </div>
+    <div class="field">
+      <label for="rtsmName" id="rtsmLabel">RTSM नाम</label>
+      <input id="rtsmName" type="text" placeholder="RTSM नाम दर्ज करें">
+    </div>
+  </section>
+
+  <section class="summary">
+    <div class="card"><div class="label" id="activitySummaryLabel">एक्टिविटी पेआउट</div><div class="value" id="activitySummary">₹ 0</div></div>
+    <div class="card"><div class="label" id="loanSummaryLabel">लोन पेआउट</div><div class="value" id="loanSummary">₹ 0</div></div>
+    <div class="card"><div class="label" id="grandSummaryLabel">कुल पेआउट</div><div class="value" id="grandSummary">₹ 0</div></div>
+  </section>
+
+  <div class="top-tools">
+    <button class="condition-link" id="conditionLink" onclick="openConditions()">📋 पेआउट की शर्तें देखें</button>
+    <div class="additional-card">
+      <div class="additional-head"><span class="earning-icon">₹</span><div><b id="additionalTitle">अतिरिक्त कमाई</b><small id="additionalSub">अतिरिक्त पेआउट के अवसर</small></div></div>
+      <div class="earning-items">
+        <div><strong>₹50</strong><span>Lending Visit<br><small>per checking + banner click + offer view</small></span></div>
+        <div><strong>₹700</strong><span id="learnerShort">लेंडिंग लर्नर स्कीम<br><small>पिछले 3 महीने TP Active + 0 Loan + First Loan</small></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <div class="section-title"><h2 id="activityTitle">1. एक्टिविटी पेआउट</h2><span class="pill" id="activityPill">क्वांटिटी डालें</span></div>
+      <div id="activityRows" class="compact-grid"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><h2 id="loanTitle">2. लोन वैल्यू पेआउट</h2><span class="pill" id="loanPill">काउंट डालें</span></div>
+      <div id="loanRows" class="compact-grid"></div>
+      <div class="note" id="loanNote"><b>ध्यान दें:</b> लोन पेआउट के लिए न्यूनतम टिकट साइज <b>₹10,000</b> है।</div>
+      <div class="total-box">
+        <div class="total-line">
+          <div><div class="total-label">TOTAL PAYOUT</div><div style="font-size:12px;opacity:.72;margin-top:3px">Activity + Loan</div></div>
+          <div class="grand" id="grandTotal">₹ 0</div>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="downloadPDF()">⬇ Download PDF</button>
+          <button class="secondary" onclick="window.print()">🖨 Print / Save PDF</button>
+          <button class="reset" onclick="resetAll()">Reset</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="card breakdown">
+    <div class="section-title"><h2 id="breakdownTitle">पेआउट ब्रेकडाउन</h2><span class="pill" id="breakdownPill">लाइव कैलकुलेशन</span></div>
+    <div id="breakdown"></div>
+  </section>
+
+  <footer class="footer">Rahul Bhatt • Regional Sales Capability Manager • Rajasthan</footer>
+</div>
+
+<div class="modal" id="conditionsModal" onclick="if(event.target===this) closeConditions()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div><span class="modal-kicker">PHONEPE RURAL BDA</span><h2 id="conditionsTitle">पेयआउट की शर्तें</h2></div>
+      <button class="close-btn" onclick="closeConditions()">×</button>
+    </div>
+    <div class="condition-grid">
+      <div class="condition-card"><h3 id="c1h">🔊 स्पीकर डिप्लॉयमेंट</h3><p id="c1p">Deployment के बाद <b>4/10 days SS Active</b> होना चाहिए और device पर <b>250 TPV</b> होना चाहिए।</p></div>
+      <div class="condition-card"><h3 id="c2h">🔄 स्पीकर RVP</h3><p id="c2p">Device को <b>10 दिनों के अंदर DC में submit</b> करना चाहिए और tagged cohort में RVP होना चाहिए।</p></div>
+      <div class="condition-card"><h3 id="c3h">👤 ऑनबोर्डिंग</h3><p id="c3p">QC &amp; OQC approved, <b>2 QR deployed with test transaction</b>, 3 unique customers और <b>3 transactions &gt; ₹90 TPV</b>।</p></div>
+      <div class="condition-card"><h3 id="c4h">⭐ HPRA सर्विसिंग</h3><p id="c4p"><b>7 दिनों में 10 TPAM increment</b> होना चाहिए।</p></div>
+      <div class="condition-card"><h3 id="c5h">📈 स्पीकर RA</h3><p id="c5p">Visit के बाद device <b>3/7 days Active</b> और 7 दिनों में <b>≥25 TPAM / 10K TPV uplift</b> होना चाहिए।</p></div>
+      <div class="condition-card"><h3 id="c6h">💳 लेंडिंग &amp; KYC</h3><p id="c6p">KYC का <b>Successful Completion</b> जरूरी है। Lending visit में <b>Checking, Banner Click और Offer View</b> शामिल हैं।</p></div>
+    </div>
+    <div class="modal-notes">
+      <div id="n1">💰 <b>Lending Visit:</b> ₹50 per checking + Banner Click + Offer View (Unique Mx)</div>
+      <div id="learnerCondition">🎓 <b>लेंडिंग लर्नर स्कीम:</b> ₹700 अतिरिक्त। पात्रता: पिछले <b>3 महीनों में TP Active</b> होना चाहिए, उन 3 महीनों में <b>0 Loan</b> होना चाहिए और लाभ <b>First Loan</b> पर लागू है।</div>
+      <div id="n3">📅 <b>RVP payout:</b> सभी RBDAs / FL / FSA के लिए applicable.</div>
+      <div id="n4">⚠️ <b>Penalty:</b> Device picked लेकिन 10 दिनों के अंदर DC में submit नहीं हुआ तो ₹50 per device penalty.</div>
+      <div id="n5">🏦 <b>PF:</b> On-roll RBDAs के लिए PhonePe PF में 50% contribution करेगा.</div>
+      <div class="highlight-note" id="n6"><b>FL onboarding नहीं कर पाएगा</b> — onboarding के लिए On-roll RBDA में convert होना होगा।</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const activities = [
+  {hi:"स्पीकर डिप्लॉयमेंट",en:"Speaker Deployment",rate:350},
+  {hi:"KYC पूरा करना",en:"Complete KYC",rate:150},
+  {hi:"डिवाइस RA / रिवर्स पिकअप",en:"Device RA / Reverse Pickup",rate:125},
+  {hi:"ऑनबोर्डिंग",en:"Onboarding",rate:125},
+  {hi:"हाई प्रायोरिटी मर्चेंट सर्विसिंग",en:"High Priority Merchant Servicing",rate:100}
+];
+const loans = [
+  {hi:"लोन वैल्यू > ₹2 लाख",en:"Loan Value > ₹2 Lakh",rate:2500},
+  {hi:"लोन वैल्यू > ₹1.25 लाख & < ₹2 लाख",en:"Loan Value > ₹1.25 Lakh & < ₹2 Lakh",rate:1400},
+  {hi:"लोन वैल्यू > ₹50K से < ₹1.25 लाख",en:"Loan Value > ₹50K & < ₹1.25 Lakh",rate:1000},
+  {hi:"लोन वैल्यू < ₹50K",en:"Loan Value < ₹50K",rate:500}
+];
+
+let currentLang = "hi";
+const T = {
+  hi:{activity:"1. एक्टिविटी पेआउट",loan:"2. लोन वैल्यू पेआउट",enter:"क्वांटिटी डालें",count:"काउंट डालें",
+      activityPayout:"एक्टिविटी पेआउट",loanPayout:"लोन पेआउट",grand:"कुल पेआउट",
+      conditions:"पेआउट की शर्तें",additional:"अतिरिक्त कमाई",extra:"अतिरिक्त पेआउट के अवसर",
+      view:"पेयआउट की शर्तें देखें",breakdown:"पेआउट ब्रेकडाउन",live:"लाइव कैलकुलेशन",
+      agent:"एजेंट नाम",rtsm:"RTSM नाम",note:"लोन पेआउट के लिए न्यूनतम टिकट साइज ₹10,000 है।",
+      learner:"लेंडिंग लर्नर स्कीम",first:"पहले लोन पर ₹700 अतिरिक्त",eligible:"पात्रता: पिछले 3 महीनों में TP Active होना चाहिए और इन 3 महीनों में 0 Loan होना चाहिए। लाभ केवल First Loan पर लागू है।"},
+  en:{activity:"1. Activity Payout",loan:"2. Loan Value Payout",enter:"Enter quantity",count:"Enter count",
+      activityPayout:"Activity Payout",loanPayout:"Loan Payout",grand:"Grand Total",
+      conditions:"Payout Conditions",additional:"Additional Earnings",extra:"Extra payout opportunities",
+      view:"View Payout Conditions",breakdown:"Payout Breakdown",live:"Live Calculation",
+      agent:"Agent Name",rtsm:"RTSM Name",note:"Minimum ticket size for loan payout is ₹10,000.",
+      learner:"Lending Learner Scheme",first:"₹700 additional on first loan",eligible:"Eligibility: TP must be active in the last 3 months and there must be 0 loans in those 3 months. Benefit is applicable on the first loan."}
+};
+
+const inr = n => "₹ " + Math.round(n).toLocaleString("en-IN");
+
+function setLanguage(lang){
+  currentLang=lang;
+  document.getElementById("langHi").classList.toggle("active",lang==="hi");
+  document.getElementById("langEn").classList.toggle("active",lang==="en");
+  const t=T[lang];
+  document.getElementById("activityTitle").textContent=t.activity;
+  document.getElementById("activityPill").textContent=t.enter;
+  document.getElementById("loanTitle").textContent=t.loan;
+  document.getElementById("loanPill").textContent=t.count;
+  document.getElementById("breakdownTitle").textContent=t.breakdown;
+  document.getElementById("breakdownPill").textContent=t.live;
+  document.getElementById("agentLabel").textContent=t.agent;
+  document.getElementById("rtsmLabel").textContent=t.rtsm;
+  document.getElementById("activitySummaryLabel").textContent=t.activityPayout;
+  document.getElementById("loanSummaryLabel").textContent=t.loanPayout;
+  document.getElementById("grandSummaryLabel").textContent=t.grand;
+  document.getElementById("conditionLink").textContent="📋 "+t.view;
+  document.getElementById("additionalTitle").textContent=t.additional;
+  document.getElementById("additionalSub").textContent=t.extra;
+  document.getElementById("loanNote").innerHTML=lang==="hi"?"<b>ध्यान दें:</b> लोन पेआउट के लिए न्यूनतम टिकट साइज <b>₹10,000</b> है।":"<b>Note:</b> Minimum ticket size for loan payout is <b>₹10,000</b>.";
+  document.getElementById("learnerShort").innerHTML=lang==="hi"?"लेंडिंग लर्नर स्कीम<br><small>3 महीने TP Active + 0 Loan + First Loan</small>":"Lending Learner Scheme<br><small>3 months TP Active + 0 Loan + First Loan</small>";
+  render();
+  calculate();
+}
+function render(){
+  document.getElementById("activityRows").innerHTML = activities.map((a,i)=>`
+    <div class="mini-card">
+      <div class="activity">${a[currentLang==="hi"?"hi":"en"]}</div>
+      <div class="mini-bottom"><span class="rate">${inr(a.rate)}</span><input type="number" min="0" step="1" value="0" id="act${i}" oninput="calculate()"></div>
+    </div>`).join("");
+
+  document.getElementById("loanRows").innerHTML = loans.map((l,i)=>`
+    <div class="mini-card">
+      <div class="loan-name">${l[currentLang==="hi"?"hi":"en"]}</div>
+      <div class="mini-bottom"><span class="loan-rate">${inr(l.rate)}</span><input type="number" min="0" step="1" value="0" id="loan${i}" oninput="calculate()"></div>
+    </div>`).join("");
+  calculate();
+}
+function calculate(){
+  let activityTotal=0, loanTotal=0;
+  activities.forEach((a,i)=> activityTotal += (Number(document.getElementById("act"+i).value)||0)*a.rate);
+  loans.forEach((l,i)=> loanTotal += (Number(document.getElementById("loan"+i).value)||0)*l.rate);
+  const grand=activityTotal+loanTotal;
+  document.getElementById("activitySummary").textContent=inr(activityTotal);
+  document.getElementById("loanSummary").textContent=inr(loanTotal);
+  document.getElementById("grandSummary").textContent=inr(grand);
+  document.getElementById("grandTotal").textContent=inr(grand);
+
+  let rows=[];
+  activities.forEach((a,i)=>{
+    const q=Number(document.getElementById("act"+i).value)||0;
+    if(q) rows.push(`<tr><td>${a[currentLang==="hi"?"hi":"en"]}</td><td>${q}</td><td>${inr(a.rate)}</td><td>${inr(q*a.rate)}</td></tr>`);
+  });
+  loans.forEach((l,i)=>{
+    const q=Number(document.getElementById("loan"+i).value)||0;
+    if(q) rows.push(`<tr><td>${l[currentLang==="hi"?"hi":"en"]}</td><td>${q}</td><td>${inr(l.rate)}</td><td>${inr(q*l.rate)}</td></tr>`);
+  });
+  document.getElementById("breakdown").innerHTML = rows.length
+    ? `<table><thead><tr><th>Activity / Slab</th><th>Qty</th><th>Rate</th><th>Payout</th></tr></thead><tbody>${rows.join("")}</tbody></table>`
+    : `<div class="empty">Enter quantities above to see the payout breakdown.</div>`;
+  return {activityTotal,loanTotal,grand};
+}
+function resetAll(){
+  document.querySelectorAll('input[type=number]').forEach(x=>x.value=0);
+  calculate(); toast("Calculator reset.");
+}
+function openConditions(){ document.getElementById("conditionsModal").classList.add("show"); document.body.style.overflow="hidden"; updateConditionLanguage(); }
+function updateConditionLanguage(){
+  const hi=currentLang==="hi";
+  const set=(id,text)=>{const e=document.getElementById(id);if(e)e.innerHTML=text;};
+  set("conditionsTitle",hi?"पेयआउट की शर्तें":"Payout Conditions");
+
+  set("c1h",hi?"🔊 स्पीकर डिप्लॉयमेंट":"🔊 Speaker Deployment");
+  set("c1p",hi?"Deployment के बाद <b>4/10 days SS Active</b> होना चाहिए और device पर <b>250 TPV</b> होना चाहिए.":"After deployment, <b>SS must be active for 4/10 days</b> and the device should have <b>250 TPV</b>.");
+
+  set("c2h",hi?"🔄 स्पीकर RVP":"🔄 Speaker RVP");
+  set("c2p",hi?"Device को <b>10 दिनों के अंदर DC में submit</b> करना चाहिए और tagged cohort में RVP होना चाहिए.":"Device should be <b>submitted to DC within 10 days</b> and RVP should be completed in the tagged cohort.");
+
+  set("c3h",hi?"👤 ऑनबोर्डिंग":"👤 Onboarding");
+  set("c3p",hi?"QC &amp; OQC approved, <b>2 QR deployed with test transaction</b>, 3 unique customers और <b>3 transactions &gt; ₹90 TPV</b>.":"QC &amp; OQC approved, <b>2 QR deployed with test transaction</b>, 3 unique customers and <b>3 transactions &gt; ₹90 TPV</b>.");
+
+  set("c4h",hi?"⭐ HPRA सर्विसिंग":"⭐ HPRA Servicing");
+  set("c4p",hi?"<b>7 दिनों में 10 TPAM increment</b> होना चाहिए.":"There should be a <b>10 TPAM increment within 7 days</b>.");
+
+  set("c5h",hi?"📈 स्पीकर RA":"📈 Speaker RA");
+  set("c5p",hi?"Visit के बाद device <b>3/7 days Active</b> और 7 दिनों में <b>≥25 TPAM / 10K TPV uplift</b> होना चाहिए.":"After the visit, device should be <b>active for 3/7 days</b> with <b>≥25 TPAM / 10K TPV uplift within 7 days</b>.");
+
+  set("c6h",hi?"💳 लेंडिंग &amp; KYC":"💳 Lending &amp; KYC");
+  set("c6p",hi?"KYC का <b>Successful Completion</b> जरूरी है. Lending visit में <b>Checking, Banner Click और Offer View</b> शामिल हैं.":"<b>Successful completion of KYC</b> is required. Lending visit includes <b>Checking, Banner Click and Offer View</b>.");
+
+  set("learnerCondition",hi
+    ?"🎓 <b>लेंडिंग लर्नर स्कीम:</b> ₹700 अतिरिक्त. पात्रता: पिछले <b>3 महीनों में TP Active</b> होना चाहिए, उन 3 महीनों में <b>0 Loan</b> होना चाहिए और लाभ <b>First Loan</b> पर लागू है।"
+    :"🎓 <b>Lending Learner Scheme:</b> ₹700 additional. Eligibility: <b>TP must be active for the last 3 months</b>, there must be <b>0 loans in those 3 months</b>, and the benefit applies to the <b>First Loan</b>.");
+
+  set("n1",hi
+    ?"💰 <b>Lending Visit:</b> ₹50 per checking + Banner Click + Offer View (Unique Mx)"
+    :"💰 <b>Lending Visit:</b> ₹50 per checking + Banner Click + Offer View (Unique Mx)");
+
+  set("n3",hi
+    ?"📅 <b>RVP payout:</b> सभी RBDAs / FL / FSA के लिए applicable."
+    :"📅 <b>RVP payout:</b> Applicable for all RBDAs / FL / FSA.");
+
+  set("n4",hi
+    ?"⚠️ <b>Penalty:</b> Device picked लेकिन 10 दिनों के अंदर DC में submit नहीं हुआ तो ₹50 per device penalty."
+    :"⚠️ <b>Penalty:</b> If a picked device is not submitted to DC within 10 days, a penalty of ₹50 per device applies.");
+
+  set("n5",hi
+    ?"🏦 <b>PF:</b> On-roll RBDAs के लिए PhonePe PF में 50% contribution करेगा."
+    :"🏦 <b>PF:</b> PhonePe will contribute 50% to PF for on-roll RBDAs.");
+
+  set("n6",hi
+    ?"<b>FL onboarding नहीं कर पाएगा</b> — onboarding के लिए On-roll RBDA में convert होना होगा।"
+    :"<b>FL cannot do onboarding</b> — they must be converted to an on-roll RBDA to do onboarding.");
+}
+function closeConditions(){ document.getElementById("conditionsModal").classList.remove("show"); document.body.style.overflow=""; }
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeConditions();});
+
+function toast(msg){
+  const t=document.getElementById("toast");t.textContent=msg;t.style.display="block";
+  setTimeout(()=>t.style.display="none",1800);
+}
+async function downloadPDF(){
+  const result=calculate();
+  if(!window.jspdf){
+    toast("PDF library load नहीं हुई — Print / Save PDF use करें.");
+    return;
+  }
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:"mm",format:"a4"});
+  const purple=[75,31,168], light=[243,239,255], dark=[35,32,58];
+  doc.setFillColor(...purple);doc.roundedRect(10,10,190,24,5,5,"F");
+  doc.setTextColor(255,255,255);doc.setFontSize(16);doc.setFont(undefined,"bold");
+  doc.text("PHONEPE RURAL BDA PAYOUT CALCULATOR",18,24);
+  doc.setFontSize(9);doc.setFont(undefined,"normal");doc.text("Payout Calculation Report",18,29);
+
+  let y=45;
+  const agentName=(document.getElementById("agentName").value||"").trim();
+  const rtsmName=(document.getElementById("rtsmName").value||"").trim();
+  doc.setFillColor(247,244,255);doc.roundedRect(12,39,186,22,4,4,"F");
+  doc.setTextColor(...dark);doc.setFontSize(9);doc.setFont(undefined,"bold");
+  doc.text("AGENT NAME",18,47); doc.text(agentName||"Not provided",18,53);
+  doc.text("RTSM NAME",108,47); doc.text(rtsmName||"Not provided",108,53);
+  y=70;
+  doc.setTextColor(...dark);doc.setFontSize(11);doc.setFont(undefined,"bold");
+  doc.text("ACTIVITY PAYOUT",12,y); y+=7;
+  doc.setFontSize(9);doc.setFont(undefined,"bold");
+  doc.text("Activity",12,y);doc.text("Qty",130,y);doc.text("Rate",150,y);doc.text("Payout",177,y);
+  y+=3;doc.setDrawColor(220,215,235);doc.line(12,y,198,y);y+=7;
+  activities.forEach((a,i)=>{
+    const q=Number(document.getElementById("act"+i).value)||0;
+    if(!q)return;
+    doc.setFont(undefined,"normal");doc.text(a[currentLang==="hi"?"hi":"en"],12,y);doc.text(String(q),132,y);doc.text(inr(a.rate),150,y);doc.text(inr(q*a.rate),177,y);y+=6;
+  });
+  y+=5;doc.setFont(undefined,"bold");doc.text("LOAN VALUE PAYOUT",12,y);y+=7;
+  doc.text("Loan Slab",12,y);doc.text("Qty",130,y);doc.text("Rate",150,y);doc.text("Payout",177,y);
+  y+=3;doc.line(12,y,198,y);y+=7;
+  loans.forEach((l,i)=>{
+    const q=Number(document.getElementById("loan"+i).value)||0;
+    if(!q)return;
+    doc.setFont(undefined,"normal");doc.text(l[currentLang==="hi"?"hi":"en"],12,y);doc.text(String(q),132,y);doc.text(inr(l.rate),150,y);doc.text(inr(q*l.rate),177,y);y+=6;
+  });
+  y=Math.max(y+8,220);
+  doc.setFillColor(...light);doc.roundedRect(12,y,186,25,4,4,"F");
+  doc.setTextColor(...purple);doc.setFontSize(10);doc.setFont(undefined,"bold");
+  doc.text("Activity Payout",18,y+8);doc.text(inr(result.activityTotal),178,y+8,{align:"right"});
+  doc.text("Loan Payout",18,y+15);doc.text(inr(result.loanTotal),178,y+15,{align:"right"});
+  doc.setFontSize(14);doc.text("GRAND TOTAL",18,y+22);doc.text(inr(result.grand),178,y+22,{align:"right"});
+  doc.setFillColor(247,244,255);doc.roundedRect(12,246,186,17,3,3,"F");
+  doc.setTextColor(...purple);doc.setFontSize(9);doc.setFont(undefined,"bold");
+  doc.text("ADDITIONAL EARNINGS",18,253);
+  doc.setFont(undefined,"normal");doc.setTextColor(...dark);doc.setFontSize(8);
+  doc.text("Lending Visit: ₹50 per checking + banner click + offer view",18,258);
+  doc.text("Lending Learner Scheme: ₹700 additional for first loan — eligibility: last 3 months TP active, 0 loan in those 3 months",18,262);
+  doc.setTextColor(105,100,120);doc.setFontSize(8);doc.setFont(undefined,"normal");
+  doc.text("Minimum loan ticket size: ₹10,000",12,273);
+  doc.text("Rahul Bhatt • Regional Sales Capability Manager • Rajasthan",12,282);
+  doc.text(new Date().toLocaleString("en-IN"),198,282,{align:"right"});
+  doc.save("PhonePe_Rural_BDA_Payout_Report.pdf");
+  toast("PDF downloaded successfully.");
+}
+render();
+</script>
+</body>
+</html>
